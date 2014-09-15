@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/15/2014 21:46:30
+-- Date Created: 09/15/2014 23:42:31
 -- Generated from EDMX file: c:\users\abbas\documents\visual studio 2013\Projects\Restaurant\Restaurant\Models\DatabaseModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [master];
+USE [Restdb];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -17,11 +17,44 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_CustomerCreditCard]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_CustomerCreditCard];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MenuItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Items] DROP CONSTRAINT [FK_MenuItem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CustomerOrder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_CustomerOrder];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OrderOrderItems]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[OrderItems] DROP CONSTRAINT [FK_OrderOrderItems];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ItemOrderItems]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[OrderItems] DROP CONSTRAINT [FK_ItemOrderItems];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Customers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Customers];
+GO
+IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Orders];
+GO
+IF OBJECT_ID(N'[dbo].[CreditCards]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CreditCards];
+GO
+IF OBJECT_ID(N'[dbo].[Menus]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Menus];
+GO
+IF OBJECT_ID(N'[dbo].[Items]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Items];
+GO
+IF OBJECT_ID(N'[dbo].[OrderItems]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[OrderItems];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
