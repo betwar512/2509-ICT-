@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D1259AD3-151B-43EA-94F3-78FA2F7EFD03}</ProjectGuid>
+    <ProjectGuid>{82452FD8-5960-4B4A-A357-14B76E6AA4BC}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Restaurant</RootNamespace>
-    <AssemblyName>Restaurant</AssemblyName>
+    <RootNamespace>RestaurantUnitTest</RootNamespace>
+    <AssemblyName>RestaurantUnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -169,39 +169,39 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CreditCard.cs">
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DatabaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DatabaseModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DatabaseModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs">
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Menu.cs">
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderItems.cs">
-      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    <Compile Include="Models\OrderItem.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -209,36 +209,28 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\CssAdmin\plugins\dataTables.bootstrap.css" />
-    <Content Include="Content\CssAdmin\plugins\metisMenu\metisMenu.css" />
-    <Content Include="Content\CssAdmin\plugins\metisMenu\metisMenu.min.css" />
-    <Content Include="Content\CssAdmin\plugins\morris.css" />
-    <Content Include="Content\CssAdmin\plugins\social-buttons.css" />
-    <Content Include="Content\CssAdmin\plugins\timeline.css" />
-    <Content Include="Content\CssAdmin\sb-admin-2.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DatabaseModel.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\DatabaseModel.edmx">
+    <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DatabaseModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DatabaseModel.edmx.diagram">
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\DatabaseModel.Context.tt">
+    <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DatabaseModel.Context.cs</LastGenOutput>
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DatabaseModel.tt">
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DatabaseModel.cs</LastGenOutput>
-      <DependentUpon>DatabaseModel.edmx</DependentUpon>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -248,21 +240,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\JsAdmin\plugins\dataTables\dataTables.bootstrap.js" />
-    <Content Include="Scripts\JsAdmin\plugins\dataTables\jquery.dataTables.js" />
-    <Content Include="Scripts\JsAdmin\plugins\flot\excanvas.min.js" />
-    <Content Include="Scripts\JsAdmin\plugins\flot\flot-data.js" />
-    <Content Include="Scripts\JsAdmin\plugins\flot\jquery.flot.js" />
-    <Content Include="Scripts\JsAdmin\plugins\flot\jquery.flot.pie.js" />
-    <Content Include="Scripts\JsAdmin\plugins\flot\jquery.flot.resize.js" />
-    <Content Include="Scripts\JsAdmin\plugins\flot\jquery.flot.tooltip.min.js" />
-    <Content Include="Scripts\JsAdmin\plugins\metisMenu\metisMenu.js" />
-    <Content Include="Scripts\JsAdmin\plugins\metisMenu\metisMenu.min.js" />
-    <Content Include="Scripts\JsAdmin\plugins\morris\morris-data.js" />
-    <Content Include="Scripts\JsAdmin\plugins\morris\morris.js" />
-    <Content Include="Scripts\JsAdmin\plugins\morris\morris.min.js" />
-    <Content Include="Scripts\JsAdmin\plugins\morris\raphael.min.js" />
-    <Content Include="Scripts\JsAdmin\sb-admin-2.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -310,12 +287,9 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
-    <Content Include="Views\Customers\View.cshtml" />
-    <Content Include="Views\Customers\ViewPage1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -343,9 +317,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>56334</DevelopmentServerPort>
+          <DevelopmentServerPort>63270</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56334/</IISUrl>
+          <IISUrl>http://localhost:63270/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

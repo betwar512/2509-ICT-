@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Restaurant
+namespace RestaurantUnitTest
 {
     public class BundleConfig
     {
@@ -26,14 +26,6 @@ namespace Restaurant
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
-
-            bundles.Add(new StyleBundle("~/Content/CssAdmin1").IncludeDirectory(
-                    "~/Content/CssAdmin/plugins/metisMenu","*.css"));
-
-            bundles.Add(new StyleBundle("~/Content/CssAdmin2").IncludeDirectory(
-            "~/Content/CssAdmin/plugins","*.css"));
-            bundles.Add(new ScriptBundle("~/script/JsAdmin").IncludeDirectory(
-                      "~/Scripts/JsAdmin/plugins","*.js"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
