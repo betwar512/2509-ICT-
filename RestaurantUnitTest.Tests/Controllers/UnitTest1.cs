@@ -13,13 +13,14 @@ namespace RestaurantUnitTest.Tests.Controllers
     //class Order created here 3 propery 
     public class order
     {
-       public string name { get; set; }
+       public string firstName { get; set; }
+       public string lastName { get; set; }
        public DateTime date { get; set; }
        public int price { get; set; }
         //string without setter just getter 
-       public string familyName
+       public string fullName
        {
-           get { return "safaie"; }  
+           get { return firstName +' '+lastName; }  
        }
   
     }
@@ -40,17 +41,19 @@ namespace RestaurantUnitTest.Tests.Controllers
         public void newObjectTest()
         {
             order myorder = new order();
-            myorder.name = "john";
+            myorder.firstName = "john";
+            myorder.lastName = "do";
             myorder.date = DateTime.Now;
-            var st = myorder.familyName;
-            Console.WriteLine("{0} {1} {2}", myorder.name, myorder.date,st);
+            var st = myorder.fullName;
+            Console.WriteLine("{0} {1}", myorder.date,st);
             
         }
 
         //total property to add all prices for Items together 
         public int total;
 
-        /*methos for test tootal from our Array in c# 
+        /*
+         * methos for test tootal from our Array in c# 
          *method created 3 insted of object Item with seted properties 
          *create List (Array) and Add each item to Array 
          *Create foreach loop to het object out and add price to our total property 
