@@ -6,18 +6,21 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestaurantUnitTest;
 using RestaurantUnitTest.Controllers;
+using RestaurantUnitTest.Models;
+
 
 namespace RestaurantUnitTest.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
     {
+   
         [TestMethod]
         public void Index()
         {
             // Arrange
             HomeController controller = new HomeController();
-
+             
             // Act
             ViewResult result = controller.Index() as ViewResult;
 

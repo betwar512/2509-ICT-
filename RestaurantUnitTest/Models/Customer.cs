@@ -19,7 +19,7 @@ namespace RestaurantUnitTest.Models
             this.CreditCards = new HashSet<CreditCard>();
             this.Orders = new HashSet<Order>();
         }
-    
+        
         public int PhoneNumber { get; set; }
         public string FistName { get; set; }
         public string LastName { get; set; }

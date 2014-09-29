@@ -20,6 +20,18 @@ namespace RestaurantUnitTest.Controllers
             return View(db.Customers.ToList());
         }
 
+        /*dont GET Confuse this is Ajax Data binding with C# and Created Partial View
+        //get PartialView FOr search Customer With Phone number 
+         */
+
+        public PartialViewResult findCustomer(string passedString)
+        {
+            int myPhone = Convert.ToInt32(passedString);
+            var customer = from c in db.Customers where c.PhoneNumber == myPhone select c;
+
+            return PartialView(customer);
+        }
+
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {

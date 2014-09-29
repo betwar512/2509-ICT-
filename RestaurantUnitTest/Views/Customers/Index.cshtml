@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FistName)
@@ -42,4 +42,33 @@
     </tr>
 }
 
-</table>
+</table>*@
+@Html.Label("search by phone")
+   @Html.TextBox("searchBox")
+<input id="searchBtn" type="button" value="find Customer" />
+
+<div id="customers"></div>
+
+ @* ajax script to pass data between html and C# *@
+         @section Scripts {
+            <script>
+            $("#searchBtn").click(function () {
+                var searchString = $("#searchBox").val();
+                $.ajax({
+                    url: '/Customers/findCustomer',
+                    contentType: 'application/html; charset=utf-8',
+                    data:{passedString :searchString },
+                    type: 'Get',
+                    dataType:'html'
+                })
+                .success(function (result) {
+
+                    $('#customers').html(result);
+                })
+                .error(function (xhr, status) {
+                    alert(status);
+                })
+
+            })
+            </script>
+            }
