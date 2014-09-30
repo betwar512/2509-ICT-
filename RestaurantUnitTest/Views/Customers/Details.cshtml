@@ -9,63 +9,89 @@
 <div>
     <h4>Customer</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FistName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FistName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreditCard.CardName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreditCard.CardName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreditCard.CardNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreditCard.CardNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreditCard.CardType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreditCard.CardType)
-        </dd>
+    <div id="page-wrapper">
         
-    </dl>
+            <dl class="dl-horizontal col-lg-6">
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FistName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FistName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CreditCard.CardName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CreditCard.CardName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CreditCard.CardNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CreditCard.CardNumber)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CreditCard.CardType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CreditCard.CardType)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "myList")
+        </p>
+    
+<div class="col-lg-6 col-md-6">
+    <div class="panel panel-yellow">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-shopping-cart fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">124</div>
+                    <div>New Orders!</div>
+                </div>
+            </div>
+        </div>
+        <a href="#">
+            <div class="panel-footer">
+                <span class="pull-left">View Details</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "myList")
-</p>
+</div>

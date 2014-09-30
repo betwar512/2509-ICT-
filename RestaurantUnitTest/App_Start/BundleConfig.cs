@@ -25,8 +25,18 @@ namespace RestaurantUnitTest
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"
-                      ,"~/Content/mainStyle.css"));
+                      "~/Content/site.css",
+                      "~/Content/mainStyle.css","~/Content/admin.css"));
+
+            bundles.Add(new StyleBundle("~/Content/adminCss").Include(
+                     "~/Content/bootstrap.css",
+                     "~/Content/admin.css","~/Content/font-awesome.min.css"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/adminLay").Include(
+                "~/Scripts/metisMenu.min.js", 
+                "~/Scripts/admin.js"
+                ));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

@@ -27,7 +27,7 @@ namespace RestaurantUnitTest.Controllers
         public ActionResult myList()
         {
             var cus = db.Customers.Include(c => c.CreditCard).ToList();
-            return View(cus);
+            return View("myList","~/Views/Shared/_LayoutAdmin.cshtml",cus);
         }
 
 
@@ -59,6 +59,13 @@ namespace RestaurantUnitTest.Controllers
                 return HttpNotFound();
             }
             return View(customer);
+        }
+        public PartialViewResult detail(int id)
+        {
+           
+               Customer customer = db.Customers.Find(id);
+
+               return PartialView(customer);
         }
 
         // GET: Customers/Create
