@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/30/2014 19:15:21
+-- Date Created: 09/30/2014 20:14:30
 -- Generated from EDMX file: C:\Users\abbas\Source\Repos\2509-ICT-\RestaurantUnitTest\Models\Model.edmx
 -- --------------------------------------------------
 
@@ -30,7 +30,7 @@ IF OBJECT_ID(N'[dbo].[FK_CustomerOrder]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_CustomerOrder];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CustomerCreditCard]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Customers] DROP CONSTRAINT [FK_CustomerCreditCard];
+    ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_CustomerCreditCard];
 GO
 
 -- --------------------------------------------------
@@ -87,7 +87,8 @@ CREATE TABLE [dbo].[Items] (
     [Description] nvarchar(max)  NOT NULL,
     [Price] decimal(18,0)  NOT NULL,
     [Picture] nvarchar(max)  NOT NULL,
-    [MenuId] int  NOT NULL
+    [MenuId] int  NOT NULL,
+    [TimeStamp] datetime  NULL
 );
 GO
 
@@ -110,9 +111,9 @@ GO
 -- Creating table 'Orders'
 CREATE TABLE [dbo].[Orders] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [TimeStamp] datetime  NOT NULL,
     [OrderTotal] decimal(18,0)  NOT NULL,
-    [CustomerId] int  NOT NULL
+    [CustomerId] int  NOT NULL,
+    [TimeStamp] datetime  NOT NULL
 );
 GO
 

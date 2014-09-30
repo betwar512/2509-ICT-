@@ -25,6 +25,7 @@ namespace RestaurantUnitTest.Models
         public decimal Price { get; set; }
         public string Picture { get; set; }
         public int MenuId { get; set; }
+        public Nullable<System.DateTime> TimeStamp { get; set; }
     
         public virtual Menu Menu { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
