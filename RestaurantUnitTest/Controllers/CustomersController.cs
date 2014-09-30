@@ -18,8 +18,18 @@ namespace RestaurantUnitTest.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+          
+            return View();
         }
+
+        //returnlist of customers with creditCard info 
+
+        public ActionResult myList()
+        {
+            var cus = db.Customers.Include(c => c.CreditCard).ToList();
+            return View(cus);
+        }
+
 
         /*
          * findCustomer function with view
@@ -56,20 +66,25 @@ namespace RestaurantUnitTest.Controllers
         }
 
         // POST: Customers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+       /*
+        * Create customer and creditCard toghether to put into db 
+        */ 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PhoneNumber,FistName,LastName,Address")] Customer customer)
+        public ActionResult Create([Bind(Include = "Id,PhoneNumber,FistName,LastName,Address")] Customer customer ,[Bind(Include = "Id,CardName,CardType,CardNumber")] CreditCard creditCard)
         {
+
             if (ModelState.IsValid)
             {
+                creditCard.Customer = customer;
+                customer.CreditCard = creditCard;
                 db.Customers.Add(customer);
+                db.CreditCards.Add(creditCard);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
 
-            return View(customer);
+            }
+           return View(customer);
         }
 
         // GET: Customers/Edit/5

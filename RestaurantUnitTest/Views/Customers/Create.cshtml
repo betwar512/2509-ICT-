@@ -22,7 +22,7 @@
                 @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        
         <div class="form-group">
             @Html.LabelFor(model => model.FistName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -46,6 +46,41 @@
                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        
+
+        @*this is creditCard*@
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreditCard.CardName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreditCard.CardName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreditCard.CardName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreditCard.CardType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreditCard.CardType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreditCard.CardType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreditCard.CardNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                
+
+               
+                
+                
+                
+                @Html.EditorFor(model => model.CreditCard.CardNumber, new { htmlAttributes = new { @class = "form-control" } })
+               @Html.ValidationMessageFor(model => model.CreditCard.CardNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*Btn to submit*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
