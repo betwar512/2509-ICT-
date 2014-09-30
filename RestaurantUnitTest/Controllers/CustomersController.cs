@@ -46,20 +46,26 @@ namespace RestaurantUnitTest.Controllers
             return PartialView(customer);
         }
 
-        // GET: Customers/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
-        }
+        //// GET: Customers/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Customer customer = db.Customers.Find(id);
+        //    if (customer == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(customer);
+        //}
+
+        /*
+         * new PartialView to show Detail of Customer 
+         * passes Id by Ajax 
+         */
+
         public PartialViewResult detail(int id)
         {
            
@@ -71,7 +77,7 @@ namespace RestaurantUnitTest.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create","~/Views/Shared/_LayoutAdmin.cshtml");
         }
 
         // POST: Customers/Create
