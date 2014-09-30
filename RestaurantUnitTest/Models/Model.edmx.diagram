@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b0afc9ccecbb4fadae9d9a5dc1ea1f41" Name="Diagram1">
-        <EntityTypeShape EntityType="RestdbModel.CreditCard" Width="1.5" PointX="9.125" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestdbModel.CreditCard" Width="1.5" PointX="9.125" PointY="1.375" IsExpanded="false" />
         <EntityTypeShape EntityType="RestdbModel.Customer" Width="1.5" PointX="6.625" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RestdbModel.Item" Width="1.5" PointX="7" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestdbModel.Menu" Width="1.5" PointX="10" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestdbModel.Menu" Width="1.5" PointX="9.625" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RestdbModel.OrderItem" Width="1.5" PointX="3.125" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="RestdbModel.Order" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="RestdbModel.FK_CustomerCreditCard" ManuallyRouted="false" />
