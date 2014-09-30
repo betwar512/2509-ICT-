@@ -11,9 +11,14 @@
 <input id="searchBtn" type="button" value="find Customer" />
 
 <div id="customers"></div>
-
-@* ajax script to pass data between html and C# *@
-@section Scripts {
+        <p>
+      @Html.ActionLink("Create New", "Create")
+        </p>
+            @*
+             *Ajax action to send data to controller ,
+             * send data : PhoneNumber 
+             * Return partial view and replace it in div id customer
+             *@
     <script>
             $("#searchBtn").click(function () {
                 var searchString = $("#searchBox").val();
