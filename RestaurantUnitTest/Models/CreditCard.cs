@@ -18,7 +18,6 @@ namespace RestaurantUnitTest.Models
         public string CardName { get; set; }
         public string CardType { get; set; }
         public short CardNumber { get; set; }
-        public int Customer_PhoneNumber { get; set; }
     
         public virtual Customer Customer { get; set; }
     }

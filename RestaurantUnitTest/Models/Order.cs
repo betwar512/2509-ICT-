@@ -22,9 +22,9 @@ namespace RestaurantUnitTest.Models
         public int Id { get; set; }
         public System.DateTime TimeStamp { get; set; }
         public decimal OrderTotal { get; set; }
-        public int CustomerPhoneNumber { get; set; }
+        public int CustomerId { get; set; }
     
-        public virtual Customer Customer { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

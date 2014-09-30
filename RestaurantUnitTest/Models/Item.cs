@@ -25,9 +25,8 @@ namespace RestaurantUnitTest.Models
         public decimal Price { get; set; }
         public string Picture { get; set; }
         public int MenuId { get; set; }
-        public int MenuId1 { get; set; }
     
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
         public virtual Menu Menu { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }
