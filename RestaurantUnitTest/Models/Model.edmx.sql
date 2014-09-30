@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/30/2014 18:47:33
+-- Date Created: 09/30/2014 19:15:21
 -- Generated from EDMX file: C:\Users\abbas\Source\Repos\2509-ICT-\RestaurantUnitTest\Models\Model.edmx
 -- --------------------------------------------------
 
@@ -17,12 +17,6 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_CustomerOrder]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_CustomerOrder];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CustomerCreditCard]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_CustomerCreditCard];
-GO
 IF OBJECT_ID(N'[dbo].[FK_MenuItem]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Items] DROP CONSTRAINT [FK_MenuItem];
 GO
@@ -31,6 +25,12 @@ IF OBJECT_ID(N'[dbo].[FK_OrderItemOrder]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ItemOrderItem]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[OrderItems] DROP CONSTRAINT [FK_ItemOrderItem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CustomerOrder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_CustomerOrder];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CustomerCreditCard]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Customers] DROP CONSTRAINT [FK_CustomerCreditCard];
 GO
 
 -- --------------------------------------------------
@@ -65,7 +65,8 @@ CREATE TABLE [dbo].[CreditCards] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [CardName] nvarchar(max)  NOT NULL,
     [CardType] nvarchar(max)  NOT NULL,
-    [CardNumber] smallint  NOT NULL
+    [CardNumber] smallint  NOT NULL,
+    [Customer_Id] int  NOT NULL
 );
 GO
 
@@ -75,8 +76,7 @@ CREATE TABLE [dbo].[Customers] (
     [PhoneNumber] int  NOT NULL,
     [FistName] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
-    [Address] nvarchar(max)  NOT NULL,
-    [CreditCard_Id] int  NOT NULL
+    [Address] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -220,19 +220,19 @@ ON [dbo].[Orders]
     ([CustomerId]);
 GO
 
--- Creating foreign key on [CreditCard_Id] in table 'Customers'
-ALTER TABLE [dbo].[Customers]
+-- Creating foreign key on [Customer_Id] in table 'CreditCards'
+ALTER TABLE [dbo].[CreditCards]
 ADD CONSTRAINT [FK_CustomerCreditCard]
-    FOREIGN KEY ([CreditCard_Id])
-    REFERENCES [dbo].[CreditCards]
+    FOREIGN KEY ([Customer_Id])
+    REFERENCES [dbo].[Customers]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CustomerCreditCard'
 CREATE INDEX [IX_FK_CustomerCreditCard]
-ON [dbo].[Customers]
-    ([CreditCard_Id]);
+ON [dbo].[CreditCards]
+    ([Customer_Id]);
 GO
 
 -- --------------------------------------------------

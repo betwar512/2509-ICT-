@@ -6,52 +6,15 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FistName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FistName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PhoneNumber }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PhoneNumber }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PhoneNumber })
-        </td>
-    </tr>
-}
-
-</table>*@
 @Html.Label("search by phone")
-   @Html.TextBox("searchBox")
+@Html.TextBox("searchBox")
 <input id="searchBtn" type="button" value="find Customer" />
 
 <div id="customers"></div>
 
- @* ajax script to pass data between html and C# *@
-         @section Scripts {
-            <script>
+@* ajax script to pass data between html and C# *@
+@section Scripts {
+    <script>
             $("#searchBtn").click(function () {
                 var searchString = $("#searchBox").val();
                 $.ajax({
@@ -70,5 +33,5 @@
                 })
 
             })
-            </script>
-            }
+    </script>
+}

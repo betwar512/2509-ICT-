@@ -12,6 +12,7 @@ namespace RestaurantUnitTest.Controllers
 {
     public class CustomersController : Controller
     {
+        //database 
         private RestdbEntities db = new RestdbEntities();
 
         // GET: Customers
@@ -20,10 +21,11 @@ namespace RestaurantUnitTest.Controllers
             return View(db.Customers.ToList());
         }
 
-        /*dont GET Confuse this is Ajax Data binding with C# and Created Partial View
-        //get PartialView FOr search Customer With Phone number 
+        /*
+         * findCustomer function with view
+         * Partial view get data from Ajax and return data to partial View same name
+         * partial view for shwing our search resualt
          */
-
         public PartialViewResult findCustomer(string passedString)
         {
             int myPhone = Convert.ToInt32(passedString);
@@ -58,7 +60,7 @@ namespace RestaurantUnitTest.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PhoneNumber,FistName,LastName,Address")] Customer customer)
+        public ActionResult Create([Bind(Include = "Id,PhoneNumber,FistName,LastName,Address")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +92,7 @@ namespace RestaurantUnitTest.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PhoneNumber,FistName,LastName,Address")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,PhoneNumber,FistName,LastName,Address")] Customer customer)
         {
             if (ModelState.IsValid)
             {

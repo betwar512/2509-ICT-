@@ -41,6 +41,7 @@
     <Property Name="CardName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CardType" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CardNumber" Type="smallint" Nullable="false" />
+    <Property Name="Customer_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Customers">
     <Key>
@@ -51,7 +52,6 @@
     <Property Name="FistName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="CreditCard_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Items">
     <Key>
@@ -138,14 +138,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CustomerCreditCard">
-    <End Role="Customer" Type="RestdbModel.Store.Customers" Multiplicity="*" />
-    <End Role="CreditCard" Type="RestdbModel.Store.CreditCards" Multiplicity="1" />
+    <End Role="Customer" Type="RestdbModel.Store.Customers" Multiplicity="1" />
+    <End Role="CreditCard" Type="RestdbModel.Store.CreditCards" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="CreditCard">
+      <Principal Role="Customer">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Customer">
-        <PropertyRef Name="CreditCard_Id" />
+      <Dependent Role="CreditCard">
+        <PropertyRef Name="Customer_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -296,7 +296,7 @@
         </Association>
         <Association Name="CustomerCreditCard">
           <End Type="RestdbModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="RestdbModel.CreditCard" Role="CreditCard" Multiplicity="1" />
+          <End Type="RestdbModel.CreditCard" Role="CreditCard" Multiplicity="0..1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -365,11 +365,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="CustomerCreditCard" TypeName="RestdbModel.CustomerCreditCard" StoreEntitySet="Customers">
-      <EndProperty Name="CreditCard">
-        <ScalarProperty Name="Id" ColumnName="CreditCard_Id" />
-      </EndProperty>
+    <AssociationSetMapping Name="CustomerCreditCard" TypeName="RestdbModel.CustomerCreditCard" StoreEntitySet="CreditCards">
       <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Customer_Id" />
+      </EndProperty>
+      <EndProperty Name="CreditCard">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
