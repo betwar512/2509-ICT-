@@ -33,12 +33,14 @@ namespace RestaurantUnitTest.Controllers
 
         /*
          * findCustomer function with view
-         * Partial view get data from Ajax and return data to partial View same name
+         *Data coming from Ajax and return data to partial View same name
          * partial view for shwing our search resualt
          */
         public PartialViewResult findCustomer(string passedString)
         {
             int myPhone = Convert.ToInt32(passedString);
+            
+            //search query
             var customer = from c in db.Customers where c.PhoneNumber == myPhone select c;
 
             return PartialView(customer);
@@ -71,7 +73,8 @@ namespace RestaurantUnitTest.Controllers
         */ 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PhoneNumber,FistName,LastName,Address")] Customer customer ,[Bind(Include = "Id,CardName,CardType,CardNumber")] CreditCard creditCard)
+        public ActionResult Create([Bind(Include = "Id,PhoneNumber,FistName,LastName,Address")] Customer customer ,
+            [Bind(Include = "Id,CardName,CardType,CardNumber")] CreditCard creditCard)
         {
 
             if (ModelState.IsValid)
