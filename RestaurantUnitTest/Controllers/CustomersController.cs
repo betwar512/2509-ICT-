@@ -97,7 +97,7 @@ namespace RestaurantUnitTest.Controllers
                 db.Customers.Add(customer);
                 db.CreditCards.Add(creditCard);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("myList");
 
             }
            return View(customer);
