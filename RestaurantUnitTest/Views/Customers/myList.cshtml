@@ -43,7 +43,7 @@
                         @Html.DisplayFor(modelItem => item.CreditCard.CardName)
                     </td>
                     <td>
-                        <button type="button" id="detailBtn" class="btn-danger" onclick="detailA(@item.Id)">Detail</button>
+                        <button type="button" id="detailBtn" class="btn btn-info" onclick="detailA(@item.Id)">Detail</button>
                         @*@Html.ActionLink("Edit", "Edit", new { id = item.Id })*@ 
                       
                     </td>
@@ -58,7 +58,9 @@
     </div>
 
 
-@*Ajax to get detail here in col 5 id=detail*@
+@*Ajax to get detail here in col 5 id=detail
+ *move this file to seperate script file later
+ *@
 
         <script>
             function detailA(id) {
