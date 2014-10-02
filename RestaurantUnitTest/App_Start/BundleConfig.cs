@@ -30,7 +30,7 @@ namespace RestaurantUnitTest
 
             bundles.Add(new StyleBundle("~/Content/adminCss").Include(
                      "~/Content/bootstrap.css",
-                     "~/Content/admin.css","~/Content/font-awesome.min.css"));
+                     "~/Content/admin.css","~/Content/font-awesome.min.css","~/Content/timeline.css"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/adminLay").Include(

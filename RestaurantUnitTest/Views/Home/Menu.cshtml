@@ -1,0 +1,75 @@
+﻿@model IEnumerable<RestaurantUnitTest.Models.Menu>
+
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Menu</h2>
+
+    <div class="col-lg-3">
+        <section class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> Menu
+            </div>
+            <!-- /.panel-heading -->
+
+            <table class="table table-hover ">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th></th>
+                </tr>
+                <tbody class="panel-body">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </section>
+    </div>
+
+<section class=" col-lg-6" style="padding-left:50px;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-badge">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+
+                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                            <p>
+                                <small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
+                            </p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia pariatur? Est cum veniam excepturi. Maiores praesentium, porro voluptas suscipit facere rem dicta, debitis.</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

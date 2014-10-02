@@ -29,6 +29,36 @@ namespace RestaurantUnitTest.Controllers
 
             return View();
         }
+        public ActionResult Menu()
+        {
+            var menu = db.Menus.ToList();
+
+            return View(menu);
+        }
+
+        // GET: Home/CreateMenu
+        public ActionResult CreateMenu()
+        {
+            return View();
+        }
+
+        // POST: Menus/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateMenu([Bind(Include = "Id,Name,Description")] Menu menu)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Menus.Add(menu);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(menu);
+        }
+
         //dumping my db ins here 
         protected override void Dispose(bool disposing)
         {

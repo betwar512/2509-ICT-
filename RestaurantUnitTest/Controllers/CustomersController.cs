@@ -53,7 +53,7 @@ namespace RestaurantUnitTest.Controllers
         //    return View(customer);
         //}
 
-        //// GET: Customers/Details/5
+         //// GET: Customers/Details/5
         /*
          * new PartialView to show Detail of Customer 
          * passes Id by Ajax 
@@ -152,6 +152,8 @@ namespace RestaurantUnitTest.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
 
         protected override void Dispose(bool disposing)
         {
