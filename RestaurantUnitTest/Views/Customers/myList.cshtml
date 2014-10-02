@@ -1,84 +1,96 @@
 ﻿@model IEnumerable<RestaurantUnitTest.Models.Customer>
 
 
+  
+<div id="topHead" style="padding-bottom:50px;">
+    
+</div>
+      <div class="panel panel-default col-lg-7">
 
-    <div class="col-lg-7" style=" padding-top:75px;">
+          <table class="table table-striped">
+              <thead class="panel-heading">
+                  <tr>
+                      <th>
+                          @Html.DisplayNameFor(model => model.PhoneNumber)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.FistName)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.LastName)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.Address)
+                      </th>
+                      <th>
+                          @Html.DisplayNameFor(model => model.CreditCard.CardName)
+                      </th>
+                      <th></th>
+                  </tr>
+              </thead>
 
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FistName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreditCard.CardName)
-                </th>
-                <th></th>
-            </tr>
+              <tbody class="panel-body">
+                  @foreach (var item in Model)
+                  {
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FistName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreditCard.CardName)
-                    </td>
-                    <td>
-                        <button type="button" id="detailBtn" class="btn btn-info" onclick="detailA(@item.Id)">Detail</button>
-                        @*@Html.ActionLink("Edit", "Edit", new { id = item.Id })*@ 
-                      
-                    </td>
-                </tr>
-            }
+                      <tr>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.PhoneNumber)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.FistName)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.LastName)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.Address)
+                          </td>
+                          <td>
+                              @Html.DisplayFor(modelItem => item.CreditCard.CardName)
+                          </td>
+                          <td>
+                              <button type="button" id="detailBtn" class="btn btn-info" onclick="detailA(@item.Id)">Detail</button>
+                              @*@Html.ActionLink("Edit", "Edit", new { id = item.Id })*@
 
-        </table>
+                          </td>
+                      </tr>
+                  }
+              </tbody>
+          </table>
 
-    </div>
+      </div>
+
+
+
     <div id="detail" class="col-lg-5" style="padding-top:75px;">
 
+
     </div>
 
 
-@*Ajax to get detail here in col 5 id=detail
- *move this file to seperate script file later
- *@
 
-        <script>
-            function detailA(id) {
-                
-                $.ajax({
-                    url: '/Customers/detail',
-                    contentType: 'application/html; charset=utf-8',
-                    data: { Id: id },
-                    type: 'Get',
-                    dataType: 'html'
-                })
-                .success(function (result) {
+    @*Ajax to get detail here in col 5 id=detail
+        *move this file to seperate script file later
+    *@
 
-                    $('#detail').html(result);
-                })
-                .error(function (xhr, status) {
-                    alert(status);
-                })
+    <script>
+        function detailA(id) {
 
-            }
-        </script>
+            $.ajax({
+                url: '/Customers/detail',
+                contentType: 'application/html; charset=utf-8',
+                data: { Id: id },
+                type: 'Get',
+                dataType: 'html'
+            })
+            .success(function (result) {
+
+                $('#detail').html(result);
+            })
+            .error(function (xhr, status) {
+                alert(status);
+            })
+
+        }
+    </script>
