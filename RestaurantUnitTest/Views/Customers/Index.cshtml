@@ -1,77 +1,71 @@
 ﻿@model IEnumerable<RestaurantUnitTest.Models.Customer>
-
-
-  
+ 
 <section class="row" style="padding-bottom:100px;">
     
-</section>
+</section>  <!--section row -->
 
-<section class="row" style="padding-left:80px">
+  <section class="row" style="padding-left:80px">
 
-    <div class="col-lg-7">
-        <section class="panel panel-default">
-            <div class="panel-heading">
-                <i class="fa fa-bar-chart-o fa-fw"></i> Customers  
-            </div>
-            <!-- /.panel-heading -->
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover ">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PhoneNumber)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FistName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LastName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Address)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CreditCard.CardName)
-                            </th>
-                        </tr>
-                    </thead>
+        <div class="col-lg-7">
+           <section class="panel panel-primary">
+             <div class="panel-heading">
+               <i class="fa fa-bar-chart-o fa-fw"></i> Customers  
+                   </div>
+                    <!-- /.panel-heading -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover ">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FistName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LastName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Address)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreditCard.CardName)
+                                    </th>
+                                </tr>
+                            </thead>
 
-                    <tbody class="panel-body ">
-                        @foreach (var item in Model)
-                        {
+                            <tbody class="panel-body ">
+                                @foreach (var item in Model)
+                                {
 
-                            <tr onclick="detailA(@item.Id)">
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FistName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LastName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Address)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CreditCard.CardName)
-                                </td>
+                                    <tr onclick="detailA(@item.Id)">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FistName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LastName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Address)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CreditCard.CardName)
+                                        </td>
                                
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-              </div> <!--table end-->
-        </section>  <!--second row here -->
-    </div>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                      </div> <!--table end-->
+                </section>  <!--second row here -->
+            </div>
 
     <div id="detail" class="col-lg-3">
-  
         </div>
-   
-
-
-
+ 
     @*Ajax to get detail here in col 5 id=detail
         *move this part to seperate script file later
     *@
@@ -156,5 +150,5 @@
         </div>
     
 </section><!--second row -->
-</section>
+</section> <!--section row -->
 
