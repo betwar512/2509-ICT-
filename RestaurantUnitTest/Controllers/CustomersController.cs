@@ -18,19 +18,11 @@ namespace RestaurantUnitTest.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-          
-            return View();
+            var customers = db.Customers.Include(c => c.CreditCard).ToList();
+            return View(customers);
         }
 
-        //returnlist of customers with creditCard info 
-
-        public ActionResult myList()
-        {
-            var cus = db.Customers.Include(c => c.CreditCard).ToList();
-            return View("myList","~/Views/Shared/_LayoutAdmin.cshtml",cus);
-        }
-
-
+      
         /*
          * findCustomer function with view
          *Data coming from Ajax and return data to partial View same name
@@ -46,7 +38,7 @@ namespace RestaurantUnitTest.Controllers
             return PartialView(customer);
         }
 
-        //// GET: Customers/Details/5
+       
         //public ActionResult Details(int? id)
         //{
         //    if (id == null)
@@ -61,12 +53,13 @@ namespace RestaurantUnitTest.Controllers
         //    return View(customer);
         //}
 
+        //// GET: Customers/Details/5
         /*
          * new PartialView to show Detail of Customer 
          * passes Id by Ajax 
          */
 
-        public PartialViewResult detail(int id)
+        public PartialViewResult Detail(int id)
         {
            
                Customer customer = db.Customers.Find(id);
