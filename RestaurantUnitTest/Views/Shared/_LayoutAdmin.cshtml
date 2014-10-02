@@ -4,14 +4,14 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
+    
     @Styles.Render("~/Content/adminCss")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,7 +34,7 @@
 
     @*navbarfortop*@
     
-    <div class="navbar-default sidebar" role="navigation">
+    <nav class="navbar navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
@@ -105,9 +105,9 @@
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
-    </div>
+    </nav>
     <!-- /.navbar-static-side -->
-    <div style="padding-left:250px;">
+    <div id="page-wrapper">
         @RenderBody()
     </div>
     
