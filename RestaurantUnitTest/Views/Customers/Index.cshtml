@@ -8,19 +8,19 @@
 
 @Html.Label("search by phone")
 @Html.TextBox("searchBox")
-<input id="searchBtn" type="button" value="find Customer" />
+<input id="searchBtn" type="button" onclick="search()" value="find Customer" />
 
-<div id="customers"></div>
-        <p>
-      @Html.ActionLink("Create New", "Create")
-        </p>
+<div id="customers">
+
+</div>
+     
             @*
              *Ajax action to send data to controller ,
              * send data : PhoneNumber 
              * Return partial view and replace it in div id customer
              *@
     <script>
-            $("#searchBtn").click(function () {
+        function search() {
                 var searchString = $("#searchBox").val();
                 $.ajax({
                     url: '/Customers/findCustomer',
@@ -37,6 +37,6 @@
                     alert(status);
                 })
 
-            })
+            }
     </script>
-}
+
