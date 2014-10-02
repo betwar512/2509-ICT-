@@ -5,102 +5,116 @@
 <div id="topHead" style="padding-bottom:50px;">
     
 </div>
-      <div class="panel panel-default col-lg-7">
 
-          <table class="table table-striped">
-              <thead class="panel-heading">
-                  <tr>
-                      <th>
-                          @Html.DisplayNameFor(model => model.PhoneNumber)
-                      </th>
-                      <th>
-                          @Html.DisplayNameFor(model => model.FistName)
-                      </th>
-                      <th>
-                          @Html.DisplayNameFor(model => model.LastName)
-                      </th>
-                      <th>
-                          @Html.DisplayNameFor(model => model.Address)
-                      </th>
-                      <th>
-                          @Html.DisplayNameFor(model => model.CreditCard.CardName)
-                      </th>
-                      <th></th>
-                  </tr>
-              </thead>
+<section class="row" style="padding-left:80px">
 
-              <tbody class="panel-body">
-                  @foreach (var item in Model)
-                  {
-
-                      <tr>
-                          <td>
-                              @Html.DisplayFor(modelItem => item.PhoneNumber)
-                          </td>
-                          <td>
-                              @Html.DisplayFor(modelItem => item.FistName)
-                          </td>
-                          <td>
-                              @Html.DisplayFor(modelItem => item.LastName)
-                          </td>
-                          <td>
-                              @Html.DisplayFor(modelItem => item.Address)
-                          </td>
-                          <td>
-                              @Html.DisplayFor(modelItem => item.CreditCard.CardName)
-                          </td>
-                          <td>
-                              <button type="button" id="detailBtn" class="btn btn-info" onclick="detailA(@item.Id)">Detail</button>
-                              @*@Html.ActionLink("Edit", "Edit", new { id = item.Id })*@
-
-                          </td>
-                      </tr>
-                  }
-              </tbody>
-          </table>
-
-        @*
-        *search function for finding customer with partialView and Ajax Load
-        *Ajax function called : findCustomer()
-        *callling findCustomer with passed String : string Phone number
-        *@
+    <div class="col-lg-7">
+        <section class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> Customers
+                <div class="pull-right">
+                    <div class="btn-group">
 
 
-          @Html.Label("search by phone")
-          @Html.TextBox("searchBox")
-          <input id="searchBtn" type="button" onclick=findCustomer() value="find Customer" />
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-heading -->
 
-          <div id="customers"></div>
-          <p>
-              @Html.ActionLink("Create New", "Create")
-          </p>
-          @*
-        *Ajax action to send data to controller ,
-        * send data : PhoneNumber
-        * Return partial view and replace it in div id customer
-          *@
-          <script>
-              function findCustomer() {
-                  var searchString = $("#searchBox").val();
-                  $.ajax({
-                      url: '/Customers/findCustomer',
-                      contentType: 'application/html; charset=utf-8',
-                      data: { passedString: searchString },
-                      type: 'Get',
-                      dataType: 'html'
-                  })
-                  .success(function (result) {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FistName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreditCard.CardName)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
 
-                      $('#customers').html(result);
-                  })
-                  .error(function (xhr, status) {
-                      alert(status);
-                  })
+                <tbody class="panel-body">
+                    @foreach (var item in Model)
+                    {
 
-              }
-          </script>
-      </div>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FistName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreditCard.CardName)
+                            </td>
+                            <td>
+                                <button type="button" id="detailBtn" class="btn btn-info" onclick="detailA(@item.Id)">Detail</button>
+                                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id })*@
 
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @*
+                *search function for finding customer with partialView and Ajax Load
+                *Ajax function called : findCustomer()
+                *callling findCustomer with passed String : string Phone number
+            *@
+
+
+            @Html.Label("search by phone")
+            @Html.TextBox("searchBox")
+            <input id="searchBtn" type="button" onclick=findCustomer() value="find Customer" />
+
+            <div id="customers"></div>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            @*
+                *Ajax action to send data to controller ,
+                * send data : PhoneNumber
+                * Return partial view and replace it in div id customer
+            *@
+            <script>
+                function findCustomer() {
+                    var searchString = $("#searchBox").val();
+                    $.ajax({
+                        url: '/Customers/findCustomer',
+                        contentType: 'application/html; charset=utf-8',
+                        data: { passedString: searchString },
+                        type: 'Get',
+                        dataType: 'html'
+                    })
+                    .success(function (result) {
+
+                        $('#customers').html(result);
+                    })
+                    .error(function (xhr, status) {
+                        alert(status);
+                    })
+
+                }
+            </script>
+        </section>
+    </div>
 
 
     <div id="detail" class="col-lg-5" style="padding-top:75px;">
@@ -111,7 +125,7 @@
 
 
     @*Ajax to get detail here in col 5 id=detail
-        *move this file to seperate script file later
+        *move this part to seperate script file later
     *@
 
     <script>
@@ -133,4 +147,54 @@
             })
 
         }
-    </script>
+      </script>
+ </section>  <!--section row -->
+
+  <section class="row" style="padding-left:80px">
+    <section class="col-lg-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-bar-chart-o fa-fw"></i> find Customer
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                        Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li>
+                            <a href="#">Action</a>
+                        </li>
+                        <li>
+                            <a href="#">Another action</a>
+                        </li>
+                        <li>
+                            <a href="#">Something else here</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">Separated link</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--second row -->
+</section>
