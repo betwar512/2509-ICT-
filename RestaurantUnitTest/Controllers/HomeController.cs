@@ -29,6 +29,8 @@ namespace RestaurantUnitTest.Controllers
 
             return View();
         }
+
+        //return Menu List to view 
         public ActionResult Menu()
         {
             var menu = db.Menus.ToList();

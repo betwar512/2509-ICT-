@@ -156,10 +156,26 @@ namespace RestaurantUnitTest.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Item item = db.Items.Find(id);
+          
+            //Delete Image assosiated with Item
+            string imagepath = Request.MapPath("~/images/" + item.Picture);
+            string thumbPath = Request.MapPath("~/images/thumbs/" + item.Picture);
+                   
+            //condiotion for file exist
+            if ( System.IO.File.Exists(imagepath))
+            {
+                System.IO.File.Delete(imagepath);
+            }
+            if(System.IO.File.Exists(thumbPath))
+            {
+                       System.IO.File.Delete(thumbPath);
+                }
+          //remove item from db
             db.Items.Remove(item);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {
