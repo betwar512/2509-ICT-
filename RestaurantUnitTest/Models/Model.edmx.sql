@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/30/2014 20:14:30
+-- Date Created: 10/04/2014 13:26:56
 -- Generated from EDMX file: C:\Users\abbas\Source\Repos\2509-ICT-\RestaurantUnitTest\Models\Model.edmx
 -- --------------------------------------------------
 
@@ -32,6 +32,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_CustomerCreditCard]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_CustomerCreditCard];
 GO
+IF OBJECT_ID(N'[dbo].[FK_CartItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Carts] DROP CONSTRAINT [FK_CartItem];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -54,6 +57,9 @@ IF OBJECT_ID(N'[dbo].[OrderItems]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Orders];
+GO
+IF OBJECT_ID(N'[dbo].[Carts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Carts];
 GO
 
 -- --------------------------------------------------
@@ -104,7 +110,10 @@ GO
 CREATE TABLE [dbo].[OrderItems] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [OrderId] int  NOT NULL,
-    [ItemId] int  NOT NULL
+    [ItemId] int  NOT NULL,
+    [Quantity] decimal(18,0)  NOT NULL,
+    [Timestamp] datetime  NOT NULL,
+    [UnitPrice] decimal(18,0)  NOT NULL
 );
 GO
 
@@ -114,6 +123,17 @@ CREATE TABLE [dbo].[Orders] (
     [OrderTotal] decimal(18,0)  NOT NULL,
     [CustomerId] int  NOT NULL,
     [TimeStamp] datetime  NOT NULL
+);
+GO
+
+-- Creating table 'Carts'
+CREATE TABLE [dbo].[Carts] (
+    [RecordId] int IDENTITY(1,1) NOT NULL,
+    [CartId] nvarchar(max)  NOT NULL,
+    [Count] smallint  NOT NULL,
+    [CreditCardId] int  NOT NULL,
+    [ItemId] int  NOT NULL,
+    [Timestamp] datetime  NOT NULL
 );
 GO
 
@@ -155,6 +175,12 @@ GO
 ALTER TABLE [dbo].[Orders]
 ADD CONSTRAINT [PK_Orders]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [RecordId] in table 'Carts'
+ALTER TABLE [dbo].[Carts]
+ADD CONSTRAINT [PK_Carts]
+    PRIMARY KEY CLUSTERED ([RecordId] ASC);
 GO
 
 -- --------------------------------------------------
@@ -234,6 +260,21 @@ GO
 CREATE INDEX [IX_FK_CustomerCreditCard]
 ON [dbo].[CreditCards]
     ([Customer_Id]);
+GO
+
+-- Creating foreign key on [ItemId] in table 'Carts'
+ALTER TABLE [dbo].[Carts]
+ADD CONSTRAINT [FK_CartItem]
+    FOREIGN KEY ([ItemId])
+    REFERENCES [dbo].[Items]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CartItem'
+CREATE INDEX [IX_FK_CartItem]
+ON [dbo].[Carts]
+    ([ItemId]);
 GO
 
 -- --------------------------------------------------

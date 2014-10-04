@@ -16,6 +16,8 @@
         <AssociationConnector Association="RestdbModel.ItemOrderItem" />
         <AssociationConnector Association="RestdbModel.CustomerOrder" />
         <AssociationConnector Association="RestdbModel.CustomerCreditCard" />
+        <EntityTypeShape EntityType="RestdbModel.Cart" Width="1.5" PointX="7.5" PointY="10.375" />
+        <AssociationConnector Association="RestdbModel.CartItem" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

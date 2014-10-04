@@ -12,16 +12,15 @@ namespace RestaurantUnitTest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderItem
+    public partial class Cart
     {
-        public int Id { get; set; }
-        public int OrderId { get; set; }
+        public int RecordId { get; set; }
+        public string CartId { get; set; }
+        public short Count { get; set; }
+        public int CreditCardId { get; set; }
         public int ItemId { get; set; }
-        public decimal Quantity { get; set; }
         public System.DateTime Timestamp { get; set; }
-        public decimal UnitPrice { get; set; }
     
-        public virtual Order Order { get; set; }
         public virtual Item Item { get; set; }
     }
 }

@@ -26,11 +26,12 @@ namespace RestaurantUnitTest
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/mainStyle.css","~/Content/admin.css"));
+                      "~/Content/mainStyle.css",
+                      "~/Content/admin.css",
+                     "~/Content/font-awesome.min.css",
+                     "~/Content/timeline.css",
+                     "~/Content/morris.css"));
 
-            bundles.Add(new StyleBundle("~/Content/adminCss").Include(
-                     "~/Content/bootstrap.css",
-                     "~/Content/admin.css","~/Content/font-awesome.min.css","~/Content/timeline.css"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/adminLay").Include(
