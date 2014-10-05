@@ -20,7 +20,7 @@ namespace RestaurantUnitTest.Models
         }
     
         public int Id { get; set; }
-        public decimal OrderTotal { get; set; }
+        public Nullable<decimal> OrderTotal { get; set; }
         public int CustomerId { get; set; }
         public System.DateTime TimeStamp { get; set; }
     

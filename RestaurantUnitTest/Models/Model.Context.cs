@@ -31,6 +31,5 @@ namespace RestaurantUnitTest.Models
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Cart> Carts { get; set; }
     }
 }

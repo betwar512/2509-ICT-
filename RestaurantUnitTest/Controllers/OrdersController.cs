@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RestaurantUnitTest.Models;
+using System.Data.SqlClient;
 
 namespace RestaurantUnitTest.Controllers
 {
@@ -24,6 +25,29 @@ namespace RestaurantUnitTest.Controllers
         }
        
 
+        // GET: Orders/Create 
+        //just create order Automaticly
+        public ActionResult Create(int Id, string name)
+        {
+
+            Customer hs = db.Customers.Where(c => c.Id == Id && c.FistName == name).Single();
+
+
+            //find customer whom ordering
+            Customer cus= db.Customers.SqlQuery(
+                "select * from Customer where Id =@Id and FirstName ==@name",
+                new SqlParameter("@Id",Id),
+                new SqlParameter("@name",name)).Single();
+            //create Order for Customer 
+            Order order = new Order { Customer = cus, CustomerId = cus.Id, OrderTotal=null,TimeStamp=DateTime.Now};
+            db.Orders.Add(order);
+            db.SaveChanges();
+            return View("", order);
+            
+        }
+
+
+
         // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
@@ -39,89 +63,6 @@ namespace RestaurantUnitTest.Controllers
             return View(order);
         }
 
-        // GET: Orders/Create
-        public ActionResult Create()
-        {
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FistName");
-            return View();
-        }
-
-        // POST: Orders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,OrderTotal,CustomerId,TimeStamp")] Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Orders.Add(order);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FistName", order.CustomerId);
-            return View(order);
-        }
-
-        // GET: Orders/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FistName", order.CustomerId);
-            return View(order);
-        }
-
-        // POST: Orders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,OrderTotal,CustomerId,TimeStamp")] Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "FistName", order.CustomerId);
-            return View(order);
-        }
-
-        // GET: Orders/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
-
-        // POST: Orders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Order order = db.Orders.Find(id);
-            db.Orders.Remove(order);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
@@ -132,4 +73,5 @@ namespace RestaurantUnitTest.Controllers
             base.Dispose(disposing);
         }
     }
+  
 }
