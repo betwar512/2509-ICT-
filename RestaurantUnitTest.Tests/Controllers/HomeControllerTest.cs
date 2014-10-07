@@ -14,13 +14,17 @@ namespace RestaurantUnitTest.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
+        RestdbEntities db = new RestdbEntities();
    
         [TestMethod]
         public void Index()
         {
             // Arrange
             HomeController controller = new HomeController();
-             
+
+
+
+
             // Act
             ViewResult result = controller.Index() as ViewResult;
 

@@ -24,9 +24,14 @@ namespace RestaurantUnitTest.Models
         public string FistName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
-    
+
+        public string FullName
+        {
+            get { return FistName+""+LastName;}  
+        }
+
         public virtual ICollection<Order> Orders { get; set; }
         public virtual CreditCard CreditCard { get; set; }
     }
-
+ 
 }
