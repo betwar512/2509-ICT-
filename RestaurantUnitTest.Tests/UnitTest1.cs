@@ -16,15 +16,21 @@ namespace RestaurantUnitTest.Tests
         [TestMethod]
         public void OrderItemsTest()
         {
-            Customer cus = new Customer(); //{ Id = 1, FistName = "Fist", LastName = "LastName", Address = "ad"};
-            //Items 
-            Item item1 = new Item();
-            Item item2 = new Item();
-            Item item3 = new Item();
-            Item item4 = new Item();
-
+     
             //Array for items
-            List<Item> items = new List<Item> { item1, item2, item3, item4 };
+            List<Item> items = new List<Item>();
+            
+            //Items 4 times
+            for (int i = 0; i < 4; i++)
+            {
+                Item item = new Item();
+                //add to list 
+                items.Add(item);
+
+            }
+
+
+           
             //init new order
             Order order = new Order();
             //Array for our orderItems Objects
@@ -47,10 +53,20 @@ namespace RestaurantUnitTest.Tests
                 itemsInOrder.Add(ordrItem);
             }
             //test case count should be 4 
-            Assert.AreEqual(itemsInOrder.Count,4);
-         
-
-           
+            Assert.AreEqual(itemsInOrder.Count,4);   
         }
+    }
+    [TestClass]
+    class OrderCheck
+    {
+        [TestMethod]
+        public void Orders()
+        {
+
+
+
+        }
+
+
     }
 }
