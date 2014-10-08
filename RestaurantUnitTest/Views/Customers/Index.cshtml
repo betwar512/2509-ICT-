@@ -38,7 +38,7 @@
                                 @foreach (var item in Model)
                                 {
 
-                                    <tr onclick="detailA(@item.Id)">
+                                    <tr onclick="detailA(@item.PhoneNumber)">
                                         <td>
                                             @Html.DisplayFor(modelItem => item.PhoneNumber)
                                         </td>
@@ -71,12 +71,12 @@
     *@
 
     <script>
-        function detailA(id) {
+        function detailA(phoneNumber) {
 
             $.ajax({
                 url: '/Customers/Detail',
                 contentType: 'application/html; charset=utf-8',
-                data: { Id: id },
+                data: { PhoneNumber: phoneNumber },
                 type: 'Get',
                 dataType: 'html'
             })

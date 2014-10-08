@@ -19,19 +19,12 @@ namespace RestaurantUnitTest.Models
             this.Orders = new HashSet<Order>();
         }
     
-        public int Id { get; set; }
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string FistName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
-
-        public string FullName
-        {
-            get { return FistName+""+LastName;}  
-        }
-
-        public virtual ICollection<Order> Orders { get; set; }
+    
         public virtual CreditCard CreditCard { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
- 
 }

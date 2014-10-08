@@ -27,22 +27,16 @@ namespace RestaurantUnitTest.Controllers
 
         // GET: Orders/Create 
         //just create order Automaticly
-        public ActionResult Create(int Id, string name)
+        public ActionResult Create(Customer customer)
         {
-
-            Customer hs = db.Customers.Where(c => c.Id == Id && c.FistName == name).Single();
-
-
-            //find customer whom ordering
-            Customer cus= db.Customers.SqlQuery(
-                "select * from Customer where Id =@Id and FirstName ==@name",
-                new SqlParameter("@Id",Id),
-                new SqlParameter("@name",name)).Single();
+            Order order = new Order();
+            order.Customer = customer;
+            order.CustomerPhoneNumber = customer.PhoneNumber;
+            order.TimeStamp = System.DateTime.Now;
             //create Order for Customer 
-            Order order = new Order { Customer = cus, CustomerId = cus.Id, OrderTotal=null,TimeStamp=DateTime.Now};
             db.Orders.Add(order);
             db.SaveChanges();
-            return View("", order);
+            return View(order);
             
         }
 

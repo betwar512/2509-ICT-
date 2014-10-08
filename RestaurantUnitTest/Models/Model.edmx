@@ -24,13 +24,13 @@
       <End Role="Item" EntitySet="Items" />
       <End Role="OrderItem" EntitySet="OrderItems" />
     </AssociationSet>
-    <AssociationSet Name="CustomerOrder" Association="RestdbModel.Store.CustomerOrder">
-      <End Role="Customer" EntitySet="Customers" />
-      <End Role="Order" EntitySet="Orders" />
-    </AssociationSet>
     <AssociationSet Name="CustomerCreditCard" Association="RestdbModel.Store.CustomerCreditCard">
       <End Role="Customer" EntitySet="Customers" />
       <End Role="CreditCard" EntitySet="CreditCards" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerOrder" Association="RestdbModel.Store.CustomerOrder">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="CreditCards">
@@ -41,14 +41,13 @@
     <Property Name="CardName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CardType" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CardNumber" Type="smallint" Nullable="false" />
-    <Property Name="Customer_Id" Type="int" Nullable="false" />
+    <Property Name="Customer_PhoneNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
   </EntityType>
   <EntityType Name="Customers">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="PhoneNumber" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PhoneNumber" Type="int" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" Nullable="false" MaxLength="15" />
     <Property Name="FistName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
@@ -80,7 +79,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OrderId" Type="int" Nullable="false" />
     <Property Name="ItemId" Type="int" Nullable="false" />
-    <Property Name="Quantity" Type="decimal" Nullable="false" />
+    <Property Name="Quantity" Type="smallint" Nullable="false" />
     <Property Name="Timestamp" Type="datetime" Nullable="false" />
     <Property Name="UnitPrice" Type="decimal" Nullable="false" />
   </EntityType>
@@ -90,8 +89,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OrderTotal" Type="decimal" Nullable="true" Precision="18" Scale="0" />
-    <Property Name="CustomerId" Type="int" Nullable="false" />
     <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+    <Property Name="CustomerPhoneNumber" Type="nvarchar" Nullable="false" MaxLength="15" />
   </EntityType>
   <Association Name="MenuItem">
     <End Role="Menu" Type="RestdbModel.Store.Menus" Multiplicity="1" />
@@ -129,27 +128,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="CustomerOrder">
-    <End Role="Customer" Type="RestdbModel.Store.Customers" Multiplicity="1" />
-    <End Role="Order" Type="RestdbModel.Store.Orders" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="CustomerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="CustomerCreditCard">
     <End Role="Customer" Type="RestdbModel.Store.Customers" Multiplicity="1" />
     <End Role="CreditCard" Type="RestdbModel.Store.CreditCards" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Customer">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="PhoneNumber" />
       </Principal>
       <Dependent Role="CreditCard">
-        <PropertyRef Name="Customer_Id" />
+        <PropertyRef Name="Customer_PhoneNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerOrder">
+    <End Role="Customer" Type="RestdbModel.Store.Customers" Multiplicity="1" />
+    <End Role="Order" Type="RestdbModel.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="PhoneNumber" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerPhoneNumber" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -169,15 +168,14 @@
         </EntityType>
         <EntityType Name="Customer">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="PhoneNumber" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
-          <Property Name="PhoneNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="15" />
           <Property Name="FistName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="RestdbModel.CustomerOrder" FromRole="Customer" ToRole="Order" />
           <NavigationProperty Name="CreditCard" Relationship="RestdbModel.CustomerCreditCard" FromRole="Customer" ToRole="CreditCard" />
+          <NavigationProperty Name="Orders" Relationship="RestdbModel.CustomerOrder" FromRole="Customer" ToRole="Order" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -211,7 +209,7 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Item" Relationship="RestdbModel.ItemOrderItem" FromRole="OrderItem" ToRole="Item" />
           <Property Name="ItemId" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Decimal" Nullable="false" />
+          <Property Name="Quantity" Type="Int16" Nullable="false" />
           <Property Name="Timestamp" Type="DateTime" Nullable="false" />
           <Property Name="UnitPrice" Type="Decimal" Nullable="false" />
         </EntityType>
@@ -222,9 +220,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderTotal" Type="Decimal" Precision="18" Scale="0" Nullable="true" />
           <NavigationProperty Name="OrderItems" Relationship="RestdbModel.OrderItemOrder" FromRole="Order" ToRole="OrderItem" />
-          <NavigationProperty Name="Customer" Relationship="RestdbModel.CustomerOrder" FromRole="Order" ToRole="Customer" />
-          <Property Name="CustomerId" Type="Int32" Nullable="false" />
           <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Customer" Relationship="RestdbModel.CustomerOrder" FromRole="Order" ToRole="Customer" />
+          <Property Name="CustomerPhoneNumber" Type="String" Nullable="false" MaxLength="15" />
         </EntityType>
         <EntityContainer Name="RestdbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CreditCards" EntityType="Self.CreditCard" />
@@ -245,13 +243,13 @@
             <End Role="Item" EntitySet="Items" />
             <End Role="OrderItem" EntitySet="OrderItems" />
           </AssociationSet>
-          <AssociationSet Name="CustomerOrder" Association="RestdbModel.CustomerOrder">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
           <AssociationSet Name="CustomerCreditCard" Association="RestdbModel.CustomerCreditCard">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="CreditCard" EntitySet="CreditCards" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerOrder" Association="RestdbModel.CustomerOrder">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="MenuItem">
@@ -290,21 +288,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="CustomerCreditCard">
+          <End Type="RestdbModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="RestdbModel.CreditCard" Role="CreditCard" Multiplicity="0..1" />
+        </Association>
         <Association Name="CustomerOrder">
           <End Type="RestdbModel.Customer" Role="Customer" Multiplicity="1" />
           <End Type="RestdbModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="PhoneNumber" />
             </Principal>
             <Dependent Role="Order">
-              <PropertyRef Name="CustomerId" />
+              <PropertyRef Name="CustomerPhoneNumber" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="CustomerCreditCard">
-          <End Type="RestdbModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="RestdbModel.CreditCard" Role="CreditCard" Multiplicity="0..1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -325,7 +323,6 @@
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="IsTypeOf(RestdbModel.Customer)">
         <MappingFragment StoreEntitySet="Customers">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="FistName" ColumnName="FistName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -372,14 +369,14 @@
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
           <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="CustomerPhoneNumber" ColumnName="CustomerPhoneNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <AssociationSetMapping Name="CustomerCreditCard" TypeName="RestdbModel.CustomerCreditCard" StoreEntitySet="CreditCards">
       <EndProperty Name="Customer">
-        <ScalarProperty Name="Id" ColumnName="Customer_Id" />
+        <ScalarProperty Name="PhoneNumber" ColumnName="Customer_PhoneNumber" />
       </EndProperty>
       <EndProperty Name="CreditCard">
         <ScalarProperty Name="Id" ColumnName="Id" />

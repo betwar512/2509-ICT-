@@ -17,10 +17,14 @@ namespace RestaurantUnitTest.Models
         public int Id { get; set; }
         public int OrderId { get; set; }
         public int ItemId { get; set; }
-        public decimal Quantity { get; set; }
+        public short Quantity { get; set; }
         public System.DateTime Timestamp { get; set; }
         public decimal UnitPrice { get; set; }
-    
+        public decimal total()
+        {
+            return Quantity * UnitPrice;
+        }
+
         public virtual Order Order { get; set; }
         public virtual Item Item { get; set; }
     }

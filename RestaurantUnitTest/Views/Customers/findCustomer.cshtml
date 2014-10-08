@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RestaurantUnitTest.Models.Customer>
+﻿@model RestaurantUnitTest.Models.Customer
 
 <div class="panel panel-green">
     <div class="panel-heading">
@@ -24,22 +24,22 @@
                 </tr>
             </thead>
             <tbody class="panel-body">
-                   @foreach (var item in Model) {  
+                     
                        <tr>           
                          <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        @Html.DisplayFor(model => model.PhoneNumber)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FistName)
+                        @Html.DisplayFor(model => model.FistName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
+                        @Html.DisplayFor(model => model.LastName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Address)
+                        @Html.DisplayFor(model => model.Address)
                     </td>
                 </tr>
-            }
+            
             </tbody>
 
         </table>

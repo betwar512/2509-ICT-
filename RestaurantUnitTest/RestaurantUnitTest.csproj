@@ -325,11 +325,11 @@
     <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Orders\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\thumbs\" />
-    <Folder Include="Views\Orders\" />
     <Folder Include="Views\ShopingCart\" />
   </ItemGroup>
   <ItemGroup>

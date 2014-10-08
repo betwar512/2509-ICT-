@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestaurantUnitTest;
 using RestaurantUnitTest.Controllers;
 using RestaurantUnitTest.Models;
+using System.Data.SqlClient;
 
 
 namespace RestaurantUnitTest.Tests.Controllers
@@ -14,25 +15,7 @@ namespace RestaurantUnitTest.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
-        RestdbEntities db = new RestdbEntities();
-   
-        [TestMethod]
-        public void Index()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-
-
-
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
-
-
-            // Assert
-            Assert.IsNotNull(result);
-        }
-
+       
         [TestMethod]
         public void About()
         {

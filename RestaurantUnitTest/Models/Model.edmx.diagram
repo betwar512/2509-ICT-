@@ -14,8 +14,8 @@
         <AssociationConnector Association="RestdbModel.MenuItem" />
         <AssociationConnector Association="RestdbModel.OrderItemOrder" />
         <AssociationConnector Association="RestdbModel.ItemOrderItem" />
-        <AssociationConnector Association="RestdbModel.CustomerOrder" />
         <AssociationConnector Association="RestdbModel.CustomerCreditCard" />
+        <AssociationConnector Association="RestdbModel.CustomerOrder" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

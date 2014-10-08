@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/04/2014 14:52:54
+-- Date Created: 10/08/2014 10:54:24
 -- Generated from EDMX file: C:\Users\abbas\Source\Repos\2509-ICT-\RestaurantUnitTest\Models\Model.edmx
 -- --------------------------------------------------
 
@@ -26,11 +26,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ItemOrderItem]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[OrderItems] DROP CONSTRAINT [FK_ItemOrderItem];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CustomerOrder]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_CustomerOrder];
-GO
 IF OBJECT_ID(N'[dbo].[FK_CustomerCreditCard]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CreditCards] DROP CONSTRAINT [FK_CustomerCreditCard];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CustomerOrder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_CustomerOrder];
 GO
 
 -- --------------------------------------------------
@@ -66,14 +66,13 @@ CREATE TABLE [dbo].[CreditCards] (
     [CardName] nvarchar(max)  NOT NULL,
     [CardType] nvarchar(max)  NOT NULL,
     [CardNumber] smallint  NOT NULL,
-    [Customer_Id] int  NOT NULL
+    [Customer_PhoneNumber] nvarchar(15)  NOT NULL
 );
 GO
 
 -- Creating table 'Customers'
 CREATE TABLE [dbo].[Customers] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [PhoneNumber] int  NOT NULL,
+    [PhoneNumber] nvarchar(15)  NOT NULL,
     [FistName] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
     [Address] nvarchar(max)  NOT NULL
@@ -105,7 +104,7 @@ CREATE TABLE [dbo].[OrderItems] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [OrderId] int  NOT NULL,
     [ItemId] int  NOT NULL,
-    [Quantity] decimal(18,0)  NOT NULL,
+    [Quantity] smallint  NOT NULL,
     [Timestamp] datetime  NOT NULL,
     [UnitPrice] decimal(18,0)  NOT NULL
 );
@@ -115,8 +114,8 @@ GO
 CREATE TABLE [dbo].[Orders] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [OrderTotal] decimal(18,0)  NULL,
-    [CustomerId] int  NOT NULL,
-    [TimeStamp] datetime  NOT NULL
+    [TimeStamp] datetime  NOT NULL,
+    [CustomerPhoneNumber] nvarchar(15)  NOT NULL
 );
 GO
 
@@ -130,10 +129,10 @@ ADD CONSTRAINT [PK_CreditCards]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Customers'
+-- Creating primary key on [PhoneNumber] in table 'Customers'
 ALTER TABLE [dbo].[Customers]
 ADD CONSTRAINT [PK_Customers]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
+    PRIMARY KEY CLUSTERED ([PhoneNumber] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'Items'
@@ -209,34 +208,34 @@ ON [dbo].[OrderItems]
     ([ItemId]);
 GO
 
--- Creating foreign key on [CustomerId] in table 'Orders'
-ALTER TABLE [dbo].[Orders]
-ADD CONSTRAINT [FK_CustomerOrder]
-    FOREIGN KEY ([CustomerId])
-    REFERENCES [dbo].[Customers]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CustomerOrder'
-CREATE INDEX [IX_FK_CustomerOrder]
-ON [dbo].[Orders]
-    ([CustomerId]);
-GO
-
--- Creating foreign key on [Customer_Id] in table 'CreditCards'
+-- Creating foreign key on [Customer_PhoneNumber] in table 'CreditCards'
 ALTER TABLE [dbo].[CreditCards]
 ADD CONSTRAINT [FK_CustomerCreditCard]
-    FOREIGN KEY ([Customer_Id])
+    FOREIGN KEY ([Customer_PhoneNumber])
     REFERENCES [dbo].[Customers]
-        ([Id])
+        ([PhoneNumber])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CustomerCreditCard'
 CREATE INDEX [IX_FK_CustomerCreditCard]
 ON [dbo].[CreditCards]
-    ([Customer_Id]);
+    ([Customer_PhoneNumber]);
+GO
+
+-- Creating foreign key on [CustomerPhoneNumber] in table 'Orders'
+ALTER TABLE [dbo].[Orders]
+ADD CONSTRAINT [FK_CustomerOrder]
+    FOREIGN KEY ([CustomerPhoneNumber])
+    REFERENCES [dbo].[Customers]
+        ([PhoneNumber])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CustomerOrder'
+CREATE INDEX [IX_FK_CustomerOrder]
+ON [dbo].[Orders]
+    ([CustomerPhoneNumber]);
 GO
 
 -- --------------------------------------------------
