@@ -1,14 +1,19 @@
 ﻿@model RestaurantUnitTest.Models.Customer
-
+@using RestaurantUnitTest.Models;
 <div class="panel panel-green">
     <div class="panel-heading">
         <i class="fa fa-bar-chart-o fa-fw"></i> Finded Customer
     </div>
+
+
+  
+    <p></p>
     <!-- /.panel-heading -->
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
+
                     <th>
                         @Html.DisplayNameFor(model => model.PhoneNumber)
                     </th>
@@ -43,5 +48,10 @@
             </tbody>
 
         </table>
+
     </div>
+    @{var phone = ViewBag.phoneNu;}
+   
+   @Html.ActionLink("LinkText", "Create", "Orders",
+                   new { @customerPhone =phone}, new { @class = "btn btn-danger" })
 </div>

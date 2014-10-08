@@ -20,23 +20,27 @@ namespace RestaurantUnitTest.Controllers
         {
             var orders = db.Orders.Include(o => o.Customer);
             return View(orders.ToList());
-            
-
         }
-       
+
 
         // GET: Orders/Create 
         //just create order Automaticly
-        public ActionResult Create(Customer customer)
+        public ActionResult Create(string customerPhone)
         {
-            Order order = new Order();
-            order.Customer = customer;
-            order.CustomerPhoneNumber = customer.PhoneNumber;
-            order.TimeStamp = System.DateTime.Now;
-            //create Order for Customer 
-            db.Orders.Add(order);
-            db.SaveChanges();
-            return View(order);
+            Customer customer = db.Customers.Find(customerPhone);
+            if (customer != null)
+            {
+                //INit new order and set 
+                Order order = new Order();
+                order.Customer = customer;
+                order.CustomerPhoneNumber = customer.PhoneNumber;
+                order.TimeStamp = System.DateTime.Now;
+                //add to db
+                db.Orders.Add(order);
+                db.SaveChanges();
+                return View(order);
+            }
+            return View("Index","Home");
             
         }
 

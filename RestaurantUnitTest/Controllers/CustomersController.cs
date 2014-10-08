@@ -34,7 +34,7 @@ namespace RestaurantUnitTest.Controllers
 
             //search query
             var customer = db.Customers.Find(passedString);
-
+            ViewBag.phoneNu = customer.PhoneNumber;
             return PartialView(customer);
         }
 
