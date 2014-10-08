@@ -20,11 +20,7 @@ namespace RestaurantUnitTest.Models
         public short Quantity { get; set; }
         public System.DateTime Timestamp { get; set; }
         public decimal UnitPrice { get; set; }
-        public decimal total()
-        {
-            return Quantity * UnitPrice;
-        }
-
+    
         public virtual Order Order { get; set; }
         public virtual Item Item { get; set; }
     }

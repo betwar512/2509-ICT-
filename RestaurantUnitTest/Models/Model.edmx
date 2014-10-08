@@ -40,7 +40,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CardName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CardType" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="CardNumber" Type="smallint" Nullable="false" />
+    <Property Name="CardNumber" Type="nvarchar" Nullable="false" MaxLength="16" />
     <Property Name="Customer_PhoneNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
   </EntityType>
   <EntityType Name="Customers">
@@ -163,7 +163,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CardName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CardType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CardNumber" Type="Int16" Nullable="false" />
+          <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="16" />
           <NavigationProperty Name="Customer" Relationship="RestdbModel.CustomerCreditCard" FromRole="CreditCard" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Customer">

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/08/2014 10:54:24
+-- Date Created: 10/08/2014 12:21:35
 -- Generated from EDMX file: C:\Users\abbas\Source\Repos\2509-ICT-\RestaurantUnitTest\Models\Model.edmx
 -- --------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE [dbo].[CreditCards] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [CardName] nvarchar(max)  NOT NULL,
     [CardType] nvarchar(max)  NOT NULL,
-    [CardNumber] smallint  NOT NULL,
+    [CardNumber] nvarchar(16)  NOT NULL,
     [Customer_PhoneNumber] nvarchar(15)  NOT NULL
 );
 GO

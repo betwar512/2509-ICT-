@@ -23,7 +23,7 @@ namespace RestaurantUnitTest.Models
         public Nullable<decimal> OrderTotal { get; set; }
         public System.DateTime TimeStamp { get; set; }
         public string CustomerPhoneNumber { get; set; }
-       
+    
         public virtual ICollection<OrderItem> OrderItems { get; set; }
         public virtual Customer Customer { get; set; }
     }
