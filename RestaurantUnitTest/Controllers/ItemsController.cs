@@ -17,11 +17,13 @@ namespace RestaurantUnitTest.Controllers
         private RestdbEntities db = new RestdbEntities();
 
         // GET: Items
-        public ActionResult Index()
+        public PartialViewResult Index()
         {
             var items = db.Items.Include(i => i.Menu);
-            return View(items.ToList());
+
+            return PartialView(items);
         }
+     
 
         // GET: Items/Details/5
         public ActionResult Details(int? id)

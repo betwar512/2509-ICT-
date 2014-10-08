@@ -1,81 +1,40 @@
 ﻿@model IEnumerable<RestaurantUnitTest.Models.Item>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-}
+            
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+                    </div><!-- /.panel-heading -->
 
-<h2>Index</h2>
+                    <div class="panel-body">
+                        <!--timeLine here for items -->
+                        <ul class="timeline">
 
-      <div class="col-lg-7">
-        <section class="panel panel-primary">
-            <div class="panel-heading">
-                <i class="fa fa-bar-chart-o fa-fw"></i> Items
-            </div>
-            <!-- /.panel-heading -->
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover ">
-               
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Name)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Description)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Price)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Picture)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TimeStamp)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Menu.Name)
-                            </th>
-                            <th></th>
-                        </tr>
+                            @foreach (var t in Model)
+                            {
+                                var Photo = t.Picture;
+                                var imagePath = @"images\thumbs\" + Photo;
+                                <li>
+                                    <div class="timeline-badge">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
 
-                    <tbody class="panel-body ">
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Description)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Price)
-                                </td>
-                                <td>
-                                    @{
-                                        var myPic = item.Picture;
-                                        var imageThumPath = "";
-                                        imageThumPath = @"images\thumbs\" + myPic;
-                                        <img src="/@imageThumPath" alt="thum path" />
-                                      
-                                      }
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TimeStamp)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Menu.Name)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                                </td>
-                            </tr>
-                        }
-                        </tbody>
+                                            <h4 class="timeline-title">@t.Name</h4>
+                                            <p>
+                                                <small class="text-muted"><i class="fa fa-clock-o"></i> @t.TimeStamp</small>
+                                            </p>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <img src="/@imagePath" />
 
-    </table>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
-            </section>
-        </div>
+      
+
