@@ -50,8 +50,8 @@
         </table>
 
     </div>
-    @{var phone = ViewBag.phoneNu;}
+    @{var phone = ViewBag.phoneNumber;}
    
-   @Html.ActionLink("LinkText", "Create", "Orders",
-                   new { @customerPhone =phone}, new { @class = "btn btn-danger" })
+   @Html.ActionLink("Order", "Create", "Orders",
+                   new { @customerPhone = phone}, new { @class = "btn btn-danger" })
 </div>

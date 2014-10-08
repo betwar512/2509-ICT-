@@ -22,12 +22,19 @@ namespace RestaurantUnitTest.Controllers
             return View(orders.ToList());
         }
 
-
+                 /*[NonAction]
+            private void DoSomething()
+            {
+                // Method logic.
+            }
+         */
         // GET: Orders/Create 
         //just create order Automaticly
         public ActionResult Create(string customerPhone)
         {
             Customer customer = db.Customers.Find(customerPhone);
+            var items = db.Items;
+            //check data  return data
             if (customer != null)
             {
                 //INit new order and set 
@@ -38,10 +45,10 @@ namespace RestaurantUnitTest.Controllers
                 //add to db
                 db.Orders.Add(order);
                 db.SaveChanges();
-                return View(order);
+                ViewBag.order = order;
+                return View("Order",items);
             }
             return View("Index","Home");
-            
         }
 
 
