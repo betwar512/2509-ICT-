@@ -33,8 +33,8 @@ namespace RestaurantUnitTest.Controllers
         {
 
             //search query
-            var customer = db.Customers.Find(passedString);
-            ViewBag.phoneNu = customer.PhoneNumber;
+            Customer customer = db.Customers.Find(passedString);
+            ViewBag.phoneNumber = passedString;
             return PartialView(customer);
         }
 
