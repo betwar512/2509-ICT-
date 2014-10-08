@@ -1,6 +1,4 @@
-﻿@model IEnumerable<RestaurantUnitTest.Models.Item>
-
-            
+﻿@model IEnumerable<RestaurantUnitTest.Models.Item>         
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
@@ -9,29 +7,57 @@
                     <div class="panel-body">
                         <!--timeLine here for items -->
                         <ul class="timeline">
-
-                            @foreach (var t in Model)
+                            @{var n = 0;
+                                foreach (var t in Model)
                             {
                                 var Photo = t.Picture;
                                 var imagePath = @"images\thumbs\" + Photo;
+                                if (n % 2 == 0)
+                                { 
+                                
                                 <li>
                                     <div class="timeline-badge">
                                         <i class="fa fa-plus"></i>
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-
-                                            <h4 class="timeline-title">@t.Name</h4>
+                                            <h4 class="timeline-title">@t.Name</h4>       
                                             <p>
-                                                <small class="text-muted"><i class="fa fa-clock-o"></i> @t.TimeStamp</small>
+                                                <img class="img-rounded" src="/@imagePath" />                                        
+                                                <small class="text-muted"><i class="fa fa-dollar"></i> @t.Price.00</small>                                     
                                             </p>
                                         </div>
-                                        <div class="timeline-body">
-                                            <img src="/@imagePath" />
-
+                                        <div class="timeline-body">               
+                                            <p>@t.Description</p> 
+                                            <small class="text-left"><i class="fa fa-clock-o"></i>@t.TimeStamp</small>
                                         </div>
                                     </div>
                                 </li>
+                                }
+                                else
+                                {
+                                    <li class="timeline-inverted">
+                                        <div class="timeline-badge">
+                                            <i class="fa fa-plus"></i>
+                                        </div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+
+                                                <h4 class="timeline-title">@t.Name</h4>
+                                                <p>
+                                                    <img class="img-rounded" src="/@imagePath" />
+                                                    <small class="text-muted"><i class="fa fa-dollar"></i> @t.Price</small>
+                                                </p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>@t.Description</p>
+                                                <small class="text-left"><i class="fa fa-clock-o"></i>@t.TimeStamp</small>
+                                               </div>
+                                        </div>
+                                    </li>
+                                }@*end of If statement *@
+                                n++;
+                             }@*End of foreach loop*@
                             }
                         </ul>
                     </div>
