@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<RestaurantUnitTest.Models.Item>         
-                <div class="panel panel-primary">
+               
+ <div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
                     </div><!-- /.panel-heading -->
-
                     <div class="panel-body">
                         <!--timeLine here for items -->
                         <ul class="timeline">
-                            @{var n = 0;
-                                foreach (var t in Model)
+               @{var n = 0; @*create n to find odd and even number for my li left and right*@
+                     foreach (var t in Model)
                             {
                                 var Photo = t.Picture;
                                 var imagePath = @"images\thumbs\" + Photo;
@@ -17,7 +17,7 @@
                                 
                                 <li>
                                     <div class="timeline-badge">
-                                        <i class="fa fa-plus"></i>
+                                        <i class="fa fa-plus" onclick="addOrder(@t.Id)"></i>
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
@@ -58,9 +58,31 @@
                                 }@*end of If statement *@
                                 n++;
                              }@*End of foreach loop*@
-                            }
-                        </ul>
-                    </div>
-                </div>
+                          }
+                  </ul>
+         </div>
+ </div>
       
+
+<script>
+    function addOrder() {
+    var person = prompt("Quantity", "");
+
+    if (person != null) {
+        $.ajax({
+            url: '/Orders/',
+            contentType: 'application/html; charset=utf-8',
+            data: { OrderItem: orderItem },
+            type: 'Get',
+            dataType: 'html'
+        })
+  .success(function (result) {
+
+      $('#detail').html(result);
+  })
+     .error(function (xhr, status) {
+         alert(status);
+     })
+    }
+}</script>
 

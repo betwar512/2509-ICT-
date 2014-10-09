@@ -21,7 +21,13 @@ namespace RestaurantUnitTest.Controllers
             var orders = db.Orders.Include(o => o.Customer);
             return View(orders.ToList());
         }
-
+      
+        public PartialViewResult Items(int? passedOrderId)
+        {
+            var items = db.Items.Include(i => i.Menu).GroupBy(t => t.MenuId);
+            
+            return PartialView(items);
+        }
                  /*[NonAction]
             private void DoSomething()
             {

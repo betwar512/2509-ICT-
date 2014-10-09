@@ -15,7 +15,7 @@ function myFunction() {
 
 
 function addOrder() {
-    var person = prompt("Please enter your name", "Harry Potter");
+    var person = prompt("Quantity", "");
 
     if (person != null) {
         $.ajax({
