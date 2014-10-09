@@ -16,6 +16,7 @@ body {
 
 #page-wrapper {
     padding: 0 15px;
+    align-content:center;
     min-height: 568px;
     background-color: #fff;
 }

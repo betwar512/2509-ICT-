@@ -236,8 +236,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\7ee8461ff8e64b426a2b4521d664ae95.jpg" />
     <Content Include="Models\Model.edmx.sql" />
     <Content Include="Content\admin.css" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\Model.edmx">
@@ -329,6 +332,7 @@
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Orders\Order.cshtml" />
     <Content Include="Views\Orders\Items.cshtml" />
+    <Content Include="Views\Orders\addToItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

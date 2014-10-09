@@ -28,12 +28,42 @@ namespace RestaurantUnitTest.Controllers
             
             return PartialView(items);
         }
-                 /*[NonAction]
-            private void DoSomething()
-            {
-                // Method logic.
-            }
-         */
+
+            /*
+             * addToItem Method
+             * passed objects = Order ,Item ,Quantity
+             * Retunr (PartialView TO ajax in Order)
+             */
+         public PartialViewResult addToItems(string OrderId,string ItemId,string customer)
+                {
+             //recive data from Ajax in Order cshtml 
+                    int orderId = Convert.ToInt32(OrderId);
+                    int itemId = Convert.ToInt32(ItemId);
+
+                    Int16 quantity = Convert.ToInt16(customer);
+                    var order = db.Orders.Find(orderId);
+                    var item = db.Items.Find(itemId);
+                   
+                        if (OrderId != null && ItemId != null && customer!=null)
+                        {
+                            //create OrderItem and add to db
+                            OrderItem addItem = new OrderItem();
+                            addItem.Order = order;
+                            addItem.Item = item;
+                            addItem.Quantity = quantity;
+                            addItem.Timestamp = System.DateTime.Now;
+                            addItem.UnitPrice = item.Price;
+                            db.OrderItems.Add(addItem);
+                            db.SaveChanges();
+                            return PartialView(addItem);
+                            
+                        }
+                        return PartialView();
+                 
+                   
+                }
+               
+
         // GET: Orders/Create 
         //just create order Automaticly
         public ActionResult Create(string customerPhone)
@@ -43,7 +73,7 @@ namespace RestaurantUnitTest.Controllers
             //check data  return data
             if (customer != null)
             {
-                //INit new order and set 
+                //Init new order and set 
                 Order order = new Order();
                 order.Customer = customer;
                 order.CustomerPhoneNumber = customer.PhoneNumber;

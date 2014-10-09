@@ -1,17 +1,16 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    /*background: url('image/The_Walking_Dead_video_game_wallpaper.jpg') no-repeat no-repeat center center fixed padding-box;*/
+    background: url('../images/7ee8461ff8e64b426a2b4521d664ae95.jpg') no-repeat no-repeat center center fixed padding-box;
     -moz-background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-  
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
-    padding-right:10px;
+    padding-right:15px;
     padding-top: 50px;
 }
 .navbar-defaul{
