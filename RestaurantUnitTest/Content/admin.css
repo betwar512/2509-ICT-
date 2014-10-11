@@ -405,11 +405,12 @@ table.dataTable thead .sorting:after {
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #000;
+    background: #eee;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+   
 }
 
 #sidenavbar.toggled #sidebar-wrapper {

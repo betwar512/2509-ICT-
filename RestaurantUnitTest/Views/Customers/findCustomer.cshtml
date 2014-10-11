@@ -1,20 +1,44 @@
 ﻿@model RestaurantUnitTest.Models.Customer
 @using RestaurantUnitTest.Models;
+
+<!--check for object return emplty or not(put together becuase of Azure prblem )-->
+@if (Model == null)
+{
+    <div class="col-lg-8 col-md-6" >
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-info-circle fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="Huge">Create New Customer!</div>
+                        <div class="small">Customer dosent Exist</div>
+                    </div>
+                </div>
+            </div>
+            <a>
+                <div class=" panel-footer">
+                    <span class="pull-left">@Html.ActionLink("Add New Customer", "Create", "Customers", null, null)</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+}
+else
+{
 <div class="panel panel-green">
     <div class="panel-heading">
-        <i class="fa fa-bar-chart-o fa-fw"></i> Finded Customer
+        <i class="fa fa-bar-chart-o fa-fw"></i>Customer
     </div>
-
-
-
     <p></p>
     <!-- /.panel-heading -->
-   
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-
                         <th>
                             @Html.DisplayNameFor(model => model.PhoneNumber)
                         </th>
@@ -54,7 +78,7 @@
    
     @{var phone = ViewBag.phoneNumber;}
 
-        <div class="col-lg-6 col-md-6" style="padding-top:50px;">
+        <div class="col-lg-10 col-md-6" style="padding-top:20px;">
             <div class="panel panel-yellow">
                 <div class="panel-heading">
                     <div class="row">
@@ -62,8 +86,8 @@
                             <i class="fa fa-shopping-cart fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
-                            <div>New Orders!</div>
+                            <div class="huge">Customer Exist</div>
+                            <div>Create new Order for this customer</div>
                         </div>
                     </div>
                 </div>
@@ -77,3 +101,5 @@
             </div>
         </div>
    
+</div>
+}
