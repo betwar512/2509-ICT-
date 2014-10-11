@@ -20,6 +20,7 @@ namespace RestaurantUnitTest.Controllers
         {
             var orders = db.Orders.Include(o => o.Customer);
             return View(orders.ToList());
+            
         }
       
         public PartialViewResult Items(int? passedOrderId)
@@ -57,17 +58,17 @@ namespace RestaurantUnitTest.Controllers
         * passed objects = Order ,Item ,Quantity
         * Retunr (PartialView TO ajax in Order)
     */
-         public PartialViewResult addToItems(string OrderId,string ItemId,string customer)
+         public PartialViewResult addToItems(string OrderId,string ItemId,string qnty)
                 {
              //recive data from Ajax in Order cshtml 
                     int orderId = Convert.ToInt32(OrderId);
                     int itemId = Convert.ToInt32(ItemId);
 
-                    Int16 quantity = Convert.ToInt16(customer);
+                    Int16 quantity = Convert.ToInt16(qnty);
                     var order = db.Orders.Find(orderId);
                     var item = db.Items.Find(itemId);
                    
-                        if (OrderId != null && ItemId != null && customer!=null)
+                        if (OrderId != null && ItemId != null && qnty!=null)
                         {
                             //create OrderItem and add to db
                             OrderItem addItem = new OrderItem();
@@ -110,6 +111,7 @@ namespace RestaurantUnitTest.Controllers
             {
                 //save changes to database
                 db.SaveChanges();
+               
             }
             catch (Exception e)
             {
@@ -127,7 +129,32 @@ namespace RestaurantUnitTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //get order
             Order order = db.Orders.Find(id);
+   
+            //var orderItems= from items in db.OrderItems
+            //                where items.OrderId==id 
+            //                select items;
+
+            //retrive all the OrderItems belong to Order
+            var orderItems = order.OrderItems;
+            //caculate total 
+            decimal total = 0;
+            foreach (var i in orderItems)
+            {
+                decimal price = i.Quantity * i.UnitPrice;
+                total += price;
+            }
+            //set OrderTotal to Total 
+            order.OrderTotal = total;
+            db.SaveChanges();
+
+
+
+
+            ViewBag.OrderItems = orderItems;
+
+
             if (order == null)
             {
                 return HttpNotFound();

@@ -1,0 +1,23 @@
+﻿@using RestaurantUnitTest.Models;
+@model RestaurantUnitTest.Models.Order
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@{IEnumerable<OrderItem> mylist = ViewBag.OrderItems;}
+<h2>Details</h2>
+<ul style="padding-top:200px;">
+    <li><h3>@mylist.Count()</h3></li>
+    @foreach (var i in mylist)
+    {
+        
+        <li>@i.Quantity</li>
+
+        <li>@i.Item.Name</li>
+        <li>@i.UnitPrice</li>
+        <li>@i.Quantity</li>
+
+
+    }
+</ul>
+<p>@Model.OrderTotal</p>
