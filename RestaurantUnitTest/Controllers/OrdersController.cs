@@ -58,17 +58,17 @@ namespace RestaurantUnitTest.Controllers
         * passed objects = Order ,Item ,Quantity
         * Retunr (PartialView TO ajax in Order)
     */
-         public PartialViewResult addToItems(string OrderId,string ItemId,string qnty)
+         public PartialViewResult addToItems(string OrderId,string ItemId,string customer)
                 {
              //recive data from Ajax in Order cshtml 
                     int orderId = Convert.ToInt32(OrderId);
                     int itemId = Convert.ToInt32(ItemId);
 
-                    Int16 quantity = Convert.ToInt16(qnty);
+                    Int16 quantity = Convert.ToInt16(customer);
                     var order = db.Orders.Find(orderId);
                     var item = db.Items.Find(itemId);
                    
-                        if (OrderId != null && ItemId != null && qnty!=null)
+                        if (OrderId != null && ItemId != null && customer!=null)
                         {
                             //create OrderItem and add to db
                             OrderItem addItem = new OrderItem();
