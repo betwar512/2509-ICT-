@@ -34,8 +34,16 @@ namespace RestaurantUnitTest.Controllers
 
             //search query
             Customer customer = db.Customers.Find(passedString);
+
             ViewBag.phoneNumber = passedString;
-            return PartialView(customer);
+            if (customer != null)
+            {
+                      return PartialView(customer);
+             }
+               else
+               {
+                   return PartialView("customerNotfound");
+                }
         }
 
        
@@ -63,8 +71,9 @@ namespace RestaurantUnitTest.Controllers
         {
            
                Customer customer = db.Customers.Find(phoneNumber);
-
-               return PartialView(customer);
+             
+                   return PartialView(customer);
+            
         }
 
         // GET: Customers/Create

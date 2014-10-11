@@ -334,6 +334,7 @@
     <Content Include="Views\Orders\Order.cshtml" />
     <Content Include="Views\Orders\Items.cshtml" />
     <Content Include="Views\Orders\addToItems.cshtml" />
+    <Content Include="Views\Customers\customerNotfound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -79,14 +79,12 @@ namespace RestaurantUnitTest.Controllers
                             addItem.UnitPrice = item.Price;
                             db.OrderItems.Add(addItem);
                             db.SaveChanges();
-                            return PartialView(addItem);
-                            
+                            //return view 
+                            return PartialView(addItem);        
                         }
-                        return PartialView();  
+                   return PartialView();  
                 }
-               
 
-  
         /*
          * Method OrderTotal
          * Return type void
