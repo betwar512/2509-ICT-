@@ -4,8 +4,10 @@
     
     <i class="fa fa-glass">@(Model.Item.Name)</i>
    <span class="pull-right text-muted small">
-       
-        <em>@Model.Item.Price</em>
-        
+       @{
+           var pr = Model.UnitPrice * Model.Quantity;
+       }
+        <em>@pr</em>
+      
     </span>
 </div>

@@ -73,18 +73,20 @@ namespace RestaurantUnitTest.Controllers
                 newFileName = Guid.NewGuid().ToString() + "_" +
 
                 Path.GetFileName(image.FileName);
+               
+                imagePath =   @"~\images\" + newFileName;
 
-                imagePath = @"images\" + newFileName;
+                image.Save(imagePath);
+                //first thumb 171*180
+                imageThumbPath = (@"~\images\thumbs\" + newFileName);
+                image.Resize(width: 171, height: 180, preserveAspectRatio: true,preventEnlarge: true);
+                image.Save(imageThumbPath);
 
-                image.Save(@"~\" + imagePath);
-
-                imageThumbPath = @"images\thumbs\" + newFileName;
-
-                image.Resize(width: 60, height: 60, preserveAspectRatio: true,
-
-                preventEnlarge: true);
-
-                image.Save(@"~\" + imageThumbPath);
+             WebImage secondImage = image.Clone();
+             secondImage.Resize(width: 242, height: 200, preserveAspectRatio: true, preventEnlarge: true);
+             string secondThumb = (@"~\images\second\"+newFileName) ;
+             secondImage.Save(secondThumb);
+               
             }
 
             if (ModelState.IsValid)
@@ -97,7 +99,7 @@ namespace RestaurantUnitTest.Controllers
                 //add item and save it 
                 db.Items.Add(item);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             ViewBag.MenuId = new SelectList(db.Menus, "Id", "Name", item.MenuId);

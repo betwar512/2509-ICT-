@@ -26,3 +26,7 @@ $(function() {
         }
     })
 })
+function hideIt() {
+    $("#sidebar-wrapper").slideToggle();
+ 
+}

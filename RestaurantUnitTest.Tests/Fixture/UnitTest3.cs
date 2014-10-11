@@ -39,8 +39,9 @@ namespace RestaurantUnitTest.Tests.Fixture
 
             List<OrderItem> itemsTotal = new List<OrderItem> {item_order1,item_order2,item_order3,item_order4 };
             myOrder.OrderItems = itemsTotal;
+            var orderI = myOrder.OrderItems;
             //test 
-            Assert.IsNotNull(myOrder);
+            Assert.IsNotNull(orderI);
         }
     }
 }

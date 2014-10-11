@@ -29,41 +29,6 @@ namespace RestaurantUnitTest.Controllers
             return PartialView(items);
         }
 
-            /*
-             * addToItem Method
-             * passed objects = Order ,Item ,Quantity
-             * Retunr (PartialView TO ajax in Order)
-             */
-         public PartialViewResult addToItems(string OrderId,string ItemId,string customer)
-                {
-             //recive data from Ajax in Order cshtml 
-                    int orderId = Convert.ToInt32(OrderId);
-                    int itemId = Convert.ToInt32(ItemId);
-
-                    Int16 quantity = Convert.ToInt16(customer);
-                    var order = db.Orders.Find(orderId);
-                    var item = db.Items.Find(itemId);
-                   
-                        if (OrderId != null && ItemId != null && customer!=null)
-                        {
-                            //create OrderItem and add to db
-                            OrderItem addItem = new OrderItem();
-                            addItem.Order = order;
-                            addItem.Item = item;
-                            addItem.Quantity = quantity;
-                            addItem.Timestamp = System.DateTime.Now;
-                            addItem.UnitPrice = item.Price;
-                            db.OrderItems.Add(addItem);
-                            db.SaveChanges();
-                            return PartialView(addItem);
-                            
-                        }
-                        return PartialView();
-                 
-                   
-                }
-               
-
         // GET: Orders/Create 
         //just create order Automaticly
         public ActionResult Create(string customerPhone)
@@ -82,11 +47,79 @@ namespace RestaurantUnitTest.Controllers
                 db.Orders.Add(order);
                 db.SaveChanges();
                 ViewBag.order = order;
-                return View("Order",items);
+                return View("Order", items);
             }
-            return View("Index","Home");
+            return View("Index", "Home");
         }
 
+    /*
+        * addToItem Method
+        * passed objects = Order ,Item ,Quantity
+        * Retunr (PartialView TO ajax in Order)
+    */
+         public PartialViewResult addToItems(string OrderId,string ItemId,string customer)
+                {
+             //recive data from Ajax in Order cshtml 
+                    int orderId = Convert.ToInt32(OrderId);
+                    int itemId = Convert.ToInt32(ItemId);
+
+                    Int16 quantity = Convert.ToInt16(customer);
+                    var order = db.Orders.Find(orderId);
+                    var item = db.Items.Find(itemId);
+                   
+                        if (OrderId != null && ItemId != null && customer!=null)
+                        {
+                            //create OrderItem and add to db
+                            OrderItem addItem = new OrderItem();
+                            addItem.Order = order;
+                            addItem.Item = item;
+                            order.OrderItems.Add(addItem);
+                            addItem.Quantity = quantity;
+                            addItem.Timestamp = System.DateTime.Now;
+                            addItem.UnitPrice = item.Price;
+                            db.OrderItems.Add(addItem);
+                            db.SaveChanges();
+                            return PartialView(addItem);
+                            
+                        }
+                        return PartialView();  
+                }
+               
+
+  
+        /*
+         * Method OrderTotal
+         * Return type void
+         * Task: get all the Items belong to Order and caculate total price by quantity and price 
+         */
+        //to finilize the order and caculate total 
+        public void OrderTotal(int orderId)
+        {
+            //find the target Order
+            var order = db.Orders.Find(orderId);
+            //retrive all the OrderItems belong to Order
+           var orderItemsOrder =order.OrderItems;
+            //caculate total 
+            decimal total = 0;
+            foreach (var i in orderItemsOrder)
+            {
+                decimal price = i.Quantity * i.UnitPrice;
+                total += price;
+            }
+            //set OrderTotal to Total 
+            order.OrderTotal = total;
+            try
+            {
+                //save changes to database
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
+
+        }
 
 
         // GET: Orders/Details/5
