@@ -159,11 +159,16 @@ namespace RestaurantUnitTest.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            //find item
             Item item = db.Items.Find(id);
-          
+            //find OrderItem assosiated with Item 
+       var orderItems=(from items in db.OrderItems 
+                where items.ItemId == id 
+                select items);
             //Delete Image assosiated with Item
             string imagepath = Request.MapPath("~/images/" + item.Picture);
             string thumbPath = Request.MapPath("~/images/thumbs/" + item.Picture);
+            string thumbSecondPAth = Request.MapPath("~/images/second/" + item.Picture);
                    
             //condiotion for file exist
             if ( System.IO.File.Exists(imagepath))
@@ -174,6 +179,14 @@ namespace RestaurantUnitTest.Controllers
             {
                        System.IO.File.Delete(thumbPath);
                 }
+            if (System.IO.File.Exists(thumbSecondPAth))
+            {
+                System.IO.File.Delete(thumbSecondPAth);
+            }
+            foreach (var i in orderItems)
+            {
+                db.OrderItems.Remove(i);
+            }
           //remove item from db
             db.Items.Remove(item);
             db.SaveChanges();

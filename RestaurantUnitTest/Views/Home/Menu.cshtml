@@ -65,14 +65,16 @@
                             foreach (var t in Items)
                             {
                                 var Photo = t.Picture;
-                                var imagePath = @"\images\" + Photo;
+                                var imagePath = @"\images\thumbs\" + Photo;
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
             <img data-src="holder/300x300" src="@imagePath" alt="...">
             <div class="caption">
                 <h3>@t.Name</h3>
                 <p>@t.Description</p>
-                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <p>@Html.ActionLink("Edit", "Edit", "Items", new { id = t.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                   @Html.ActionLink("Detail", "Details", "Items", new { id = t.Id }, htmlAttributes: new { @class="btn btn-info" })
+                </p>
             </div>
         </div>
     </div>
