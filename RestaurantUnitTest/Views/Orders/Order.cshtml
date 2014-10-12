@@ -1,0 +1,249 @@
+﻿
+@{
+    ViewBag.Title = "ORDER";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model IEnumerable<RestaurantUnitTest.Models.Item>
+@using RestaurantUnitTest.Models;
+<!--order we catching from controller-->
+@{Order order = (Order)ViewBag.order;
+  var orderId = order.Id;}
+<h2>ORDER</h2>
+@*@{var test = order.Customer.FistName;}
+            <p>@test</p>*@
+
+    <div class="row" style="padding-top:50px;">
+    <section class="col-lg-6">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#Menu1" role="tab" data-toggle="tab">Menu1</a></li>
+            <li><a href="#messages" role="tab" data-toggle="tab">Menu2</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="Menu1">
+                <section id="MenuItems">
+                    <!--Loading partialview Items-->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-clock-o fa-fw"></i>Items
+                        </div><!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!--timeLine here for items -->
+                            <ul class="timeline">
+                                @{var n = 0; @*create n to find odd and even number for my li left and right*@
+                                    foreach (var t in Model)
+                                    {
+                                        if (t.MenuId == 1) {     
+                                        var Photo = t.Picture;
+                                        var imagePath = @"images\thumbs\" + Photo;
+                                        if (n % 2 == 0)
+                                        {
+                                            <li>
+                                                <div class="timeline-badge">                
+                                                    <i class="fa fa-plus" onclick=addOrder(@t.Id,@order.Id)></i>
+                                                </div>
+                                                <div class="timeline-panel">
+                                                    <div class="timeline-heading">
+                                                        <h4 class="timeline-title">@t.Name</h4>
+                                                        <p>
+                                                            <img class="img-rounded" src="/@imagePath" />
+                                                            <small class="text-muted"><i class="fa fa-dollar"></i> @t.Price.00</small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="timeline-body">
+                                                        <p>@t.Description</p>
+                                                        <small class="text-left"><i class="fa fa-clock-o"></i>@t.TimeStamp</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="timeline-inverted">
+                                                <div class="timeline-badge">
+                                                   
+                                                    <i class="fa fa-plus" onclick="addOrder(@t.Id,@order.Id)"></i>
+                                                </div>
+
+                                                <div class="timeline-panel">
+                                                    <div class="timeline-heading">
+
+                                                        <h4 class="timeline-title">@t.Name</h4>
+                                                        <p>
+                                                            <img class="img-rounded" src="/@imagePath" />
+                                                            <small class="text-muted"><i class="fa fa-dollar"></i> @t.Price</small>
+                                                        </p>
+                                                    </div>
+                                                    <div class="timeline-body">
+                                                        <p>@t.Description</p>
+                                                        <small class="text-left"><i class="fa fa-clock-o"></i>@t.TimeStamp</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }@*end of If statement *@
+                                        n++;
+                                        }
+                                    }@*End of foreach loop*@
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    @*@{
+                              Html.RenderPartial("Items");
+                        }*@
+                </section>
+            </div>
+     
+            <div class="tab-pane" id="messages">
+                <div class="tab-content">
+    <div class="tab-pane active" id="Menu2">
+        <section id="MenuItems">
+            <!--Loading partialview Items-->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-clock-o fa-fw"></i>Items
+                </div><!-- /.panel-heading -->
+                <div class="panel-body">
+                    <!--timeLine here for items -->
+                    <ul class="timeline">
+                        <!--create n to find odd and even number for my li left and right-->
+                        @{var j = 0;
+                            foreach (var t in Model)
+                            {
+
+
+
+                                if (t.MenuId == 2)
+                                {
+
+
+                                    var Photo = t.Picture;
+                                    var imagePath = @"images\thumbs\" + Photo;
+                                    if (j % 2 == 0)
+                                    {
+
+                                        <li>
+                                            <div class="timeline-badge">
+
+                                                <i class="fa fa-plus" onclick=addOrder(@t.Id,@order.Id)></i>
+                                            </div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4 class="timeline-title">@t.Name</h4>
+                                                    <p>
+                                                        <img class="img-rounded" src="/@imagePath" />
+                                                        <small class="text-muted"><i class="fa fa-dollar"></i> @t.Price.00</small>
+                                                    </p>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p>@t.Description</p>
+                                                    <small class="text-left"><i class="fa fa-clock-o"></i>@t.TimeStamp</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="timeline-inverted">
+                                            <div class="timeline-badge">
+
+                                                <i class="fa fa-plus" onclick="addOrder(@t.Id,@order.Id)"></i>
+                                            </div>
+
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+
+                                                    <h4 class="timeline-title">@t.Name</h4>
+                                                    <p>
+                                                        <img class="img-rounded" src="/@imagePath" />
+                                                        <small class="text-muted"><i class="fa fa-dollar"></i> @t.Price</small>
+                                                    </p>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p>@t.Description</p>
+                                                    <small class="text-left"><i class="fa fa-clock-o"></i>@t.TimeStamp</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }@*end of If statement *@
+
+                                }
+                                j++;
+
+                            }@*End of foreach loop*@
+                        }
+                        </ul>
+                  </div>
+               </div>
+        </section>
+    </div>
+
+               </div>
+           </div>
+ 
+</div></section><!--end of Items section-->
+
+        <section class="col-lg-6" style="padding-top:43px;">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <i class="fa fa-hand-o-right"></i> Order
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group" id="orderList">
+                       @**this is place holder for ore added Item*@
+
+                    </div>
+                </div>
+                <section class="panel-footer">
+                    <div class="list-group-item">
+                        <i class="fa fa-dollar"></i> Total
+                        <span class="pull-right text-muted small">
+                            <em>12 minutes ago</em>
+                        </span>
+                    </div>
+                </section>
+            </div>
+            @Html.ActionLink("Total", "Details", new { id = orderId }, htmlAttributes: new { @class = "btn btn-primary" })
+        </section><!--end of Order Section-->
+</div><!--end of row-->
+               
+
+            <div class="modal hide fade">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                    </div>
+                </div>
+            </div>
+
+
+
+  <script>      
+
+                function addOrder(itemId,orderId) {
+                    var person = prompt("Quantity","");  
+                    if (person != null) {
+                        $.ajax({
+                            url: '/Orders/addToItems',
+                            contentType: 'application/html; charset=utf-8',
+                            data: { ItemId: itemId, OrderId: orderId, customer: person },
+                            type: 'Get',
+                            dataType: 'html'
+                        })
+                  .success(function(result) {
+                      $("#orderList").append(result)
+                      // order.push(myCatchName);
+
+                      //$("#orderList").append( '<div class="list-group-item">'+
+                      //      '<i class="fa fa-glass">' + '</i>' + myCatchName +
+                      //     '<span class="pull-right text-muted small">'+
+                      //          '<em>'+ person +'</em>'+
+                      //      '</span>' + '</div>'
+                          }).error(function (xhr, status) {
+                      alert(status);
+                   })
+                  }
+                } 
+      
+  </script>
