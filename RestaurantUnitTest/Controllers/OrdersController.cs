@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+*code Author Abbas H Safaie
+*Created for Practice
+*Project Name: Project Restaurant 
+*Requested by Griffith university, Software Engineering semester 2 2014
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -98,6 +105,7 @@ namespace RestaurantUnitTest.Controllers
             var order = db.Orders.Find(orderId);
             //retrive all the OrderItems belong to Order
            var orderItemsOrder =order.OrderItems;
+            var orderIt=from i in db.OrderItems where i.OrderId == orderId select i;
             //caculate total 
             decimal total = 0;
             foreach (var i in orderItemsOrder)
@@ -122,6 +130,12 @@ namespace RestaurantUnitTest.Controllers
         }
 
 
+       
+        /*
+         *input:OrderId
+         * Cacualte total and set It for our Prder total
+         * return : view OrderDetail 
+         */
         // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
@@ -130,14 +144,10 @@ namespace RestaurantUnitTest.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //get order
-            Order order = db.Orders.Find(id);
-   
-            //var orderItems= from items in db.OrderItems
-            //                where items.OrderId==id 
-            //                select items;
+            var order = db.Orders.Find(id);
 
-            //retrive all the OrderItems belong to Order
-            var orderItems = order.OrderItems;
+            //retrieve all the OrderItems belong to Order
+            var orderItems =from j in db.OrderItems where j.OrderId == id select j;
             //caculate total 
             decimal total = 0;
             foreach (var i in orderItems)
@@ -149,12 +159,6 @@ namespace RestaurantUnitTest.Controllers
             order.OrderTotal = total;
             db.SaveChanges();
 
-
-
-
-            ViewBag.OrderItems = orderItems;
-
-
             if (order == null)
             {
                 return HttpNotFound();
@@ -162,6 +166,21 @@ namespace RestaurantUnitTest.Controllers
             return View(order);
         }
 
+        //Report total orders for day
+        public ActionResult ReportDay()
+        {
+            DateTime today = System.DateTime.Today;
+            DateTime yesterday=System.DateTime.Today.AddDays(1);
+            var orders = from or in db.Orders 
+                         where 
+                             or.TimeStamp > yesterday &&
+                             or.TimeStamp < today 
+                         select or;
+
+
+            return View(orders);
+
+        }
 
         protected override void Dispose(bool disposing)
         {

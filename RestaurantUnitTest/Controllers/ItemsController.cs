@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+*code Author Abbas H Safaie
+*Created for Practice
+*Project Name: Project Restaurant 
+*Requested by Griffith university, Software Engineering semester 2 2014
+*/
+
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;

@@ -5,9 +5,9 @@
     <i class="fa fa-glass">@(Model.Item.Name)</i>
    <span class="pull-right text-muted small">
        @{
-           var pr = Model.UnitPrice * Model.Quantity;
+           decimal pr = Model.UnitPrice * Model.Quantity;
        }
-        <em>@pr</em>
+        <em><i class="fa fa-dollar"></i>@pr</em>
       
     </span>
 </div>

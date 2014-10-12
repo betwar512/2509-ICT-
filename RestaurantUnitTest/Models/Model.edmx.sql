@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/08/2014 12:21:35
+-- Date Created: 10/12/2014 15:13:55
 -- Generated from EDMX file: C:\Users\abbas\Source\Repos\2509-ICT-\RestaurantUnitTest\Models\Model.edmx
 -- --------------------------------------------------
 
@@ -84,7 +84,7 @@ CREATE TABLE [dbo].[Items] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [Price] decimal(18,0)  NOT NULL,
+    [Price] decimal(18,2)  NOT NULL,
     [Picture] nvarchar(max)  NOT NULL,
     [MenuId] int  NOT NULL,
     [TimeStamp] datetime  NULL
@@ -106,14 +106,14 @@ CREATE TABLE [dbo].[OrderItems] (
     [ItemId] int  NOT NULL,
     [Quantity] smallint  NOT NULL,
     [Timestamp] datetime  NOT NULL,
-    [UnitPrice] decimal(18,0)  NOT NULL
+    [UnitPrice] decimal(18,2)  NOT NULL
 );
 GO
 
 -- Creating table 'Orders'
 CREATE TABLE [dbo].[Orders] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [OrderTotal] decimal(18,0)  NULL,
+    [OrderTotal] decimal(18,2)  NULL,
     [TimeStamp] datetime  NOT NULL,
     [CustomerPhoneNumber] nvarchar(15)  NOT NULL
 );

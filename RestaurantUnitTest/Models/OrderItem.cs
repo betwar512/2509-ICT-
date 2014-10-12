@@ -22,8 +22,9 @@ namespace RestaurantUnitTest.Models
         public decimal UnitPrice { get; set; }
         public decimal total()
         {
-            return Quantity * UnitPrice;
+            return UnitPrice * Quantity;
         }
+
         public virtual Order Order { get; set; }
         public virtual Item Item { get; set; }
     }
