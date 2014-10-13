@@ -435,7 +435,6 @@ table.dataTable thead .sorting:after {
     width: 250px;
     margin: 0;
     padding: 0;
-    padding-right:150px;
     list-style: none;
 }
 
@@ -478,7 +477,7 @@ table.dataTable thead .sorting:after {
 
 @media(min-width:768px) {
     #wrapper {
-        padding-left: 250px;
+        padding-left: 20px;
     }
 
     #wrapper.toggled {

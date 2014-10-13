@@ -177,7 +177,6 @@ namespace RestaurantUnitTest.Controllers
                              or.TimeStamp < today 
                          select or;
 
-
             return View(orders);
 
         }
