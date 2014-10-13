@@ -6,17 +6,55 @@
 }
 @{IEnumerable<OrderItem> mylist = Model.OrderItems;}
 <h2>Details</h2>
-<ul style="padding-top:200px;">
-   
 
-    @foreach (var i in mylist)
-    {
-    
-        <li>@i.Item.Name</li>
-        <li>@i.UnitPrice</li>
-        <li>@i.Quantity</li>
+    <div class="col-lg-10">
+        <section class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> Order Detail
+            </div>
+            <!-- /.panel-heading -->
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover ">
+                    <thead>
+                        <tr>
+                            <th>
+                           Item Name 
+                            </th>
+                            <th>
+                              Qnty
+                            </th>
+                            <th>
+                             Price per unit
+                            </th>
+                            <th>
+                              Total price 
+                            </th>
+                        </tr>
+                    </thead>
 
-    }
-    
-</ul>
+                    <tbody class="panel-body ">
+                        @foreach (var item in mylist)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                                </td>
+                                <td>
+                                   @{var totalCaculate = item.UnitPrice * item.Quantity;} 
+                                    @totalCaculate
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div> <!--table end-->
+        </section>  <!--second row here -->
+    </div>
+
 <p>@Model.OrderTotal</p>

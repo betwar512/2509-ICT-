@@ -345,7 +345,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="images\second\" />
     <Folder Include="images\thumbs\" />
-    <Folder Include="Views\ShopingCart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
