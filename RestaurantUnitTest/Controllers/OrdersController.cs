@@ -50,7 +50,9 @@ namespace RestaurantUnitTest.Controllers
                 Order order = new Order();
                 order.Customer = customer;
                 order.CustomerPhoneNumber = customer.PhoneNumber;
-                order.TimeStamp = System.DateTime.Now;
+                var myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time");
+                var currentDateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, myTimeZone);
+                order.TimeStamp = currentDateTime;
                 //add to db
                 db.Orders.Add(order);
                 db.SaveChanges();
@@ -169,12 +171,13 @@ namespace RestaurantUnitTest.Controllers
         //Report total orders for day
         public ActionResult ReportDay()
         {
-            DateTime today = System.DateTime.Today;
-            DateTime yesterday=System.DateTime.Today.AddDays(1);
+           
+            var myTimeZone = TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time");
+            var now = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, myTimeZone);
+            DateTime today = now.AddDays(-1);
             var orders = from or in db.Orders 
                          where 
-                             or.TimeStamp > yesterday &&
-                             or.TimeStamp < today 
+                             or.TimeStamp > today
                          select or;
 
             return View(orders);

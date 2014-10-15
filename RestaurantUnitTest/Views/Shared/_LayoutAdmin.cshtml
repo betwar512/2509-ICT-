@@ -21,12 +21,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Restaurant Project", "Menu", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Restaurant Project", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
+                    <li>@Html.ActionLink("Menus","Menu","Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li><a onclick="hideIt();">Toogle Side Menu</a></li>
@@ -37,58 +39,44 @@
         </div>
     </div><!--navbarfortop-->
    
-    <div id="sidebar-wrapper">
+    <div id="sidebar-wrapper" class="hidden-md">
         <ul class="sidebar-nav">
 
             <li class="sidebar-brand">
-                <a href="#">
-                    Restaurant
+                <a href="~/Home/Index">
+                    Home
                 </a>
             </li>
             <li>
                 <a href="~/Customers/Index">New Order</a>
             </li>
             <li>
-                <a href="~/Home/Menu">Menus<i class="fa fa-bar-chart-o fa-fw"></i></a>
+                <a href="~/Home/Menu">Menus</a>
             </li>
             <li>
                  <a href="~/Customers/Create">Add Customer</a>
             </li>
             <li>
                 <a href="~/Items/Create">Add Item</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
+            </li> 
+            <li><a href="~/Orders/ReportDay">Today Report<i class="fa fa-bar-chart-o fa-fw"></i></a></li>
         </ul>
     </div>
     
     <!-- /.navbar-static-side -->
     <div class="container">
-
         @RenderBody()
-
        <hr/>
         <footer>
             <p>Betwar512: A.H.S</p>
         </footer>
     </div>
-   
-   
-   
+ 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
   @Scripts.Render("~/bundles/adminLay")
     @RenderSection("scripts", required: false)
-
-    
+   
 </body>
-
 
 </html>

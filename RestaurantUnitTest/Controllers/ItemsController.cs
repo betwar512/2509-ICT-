@@ -24,13 +24,10 @@ namespace RestaurantUnitTest.Controllers
     {
         private RestdbEntities db = new RestdbEntities();
 
-        // GET: Items
-        //public PartialViewResult Items(string OrderId)
-        //{
-        //    var items = db.Items.Include(i => i.Menu).GroupBy(t=>t.MenuId);
-        //    string or = OrderId;
-        //    return PartialView(items);
-        //}
+        public ActionResult Index()
+        {
+            return View("../Home/Index");
+        }
      
 
         // GET: Items/Details/5
@@ -141,7 +138,7 @@ namespace RestaurantUnitTest.Controllers
             {
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Menu","Home");
             }
             ViewBag.MenuId = new SelectList(db.Menus, "Id", "Name", item.MenuId);
             return View(item);

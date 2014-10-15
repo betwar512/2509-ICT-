@@ -5,42 +5,53 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>ReportToday</h2>
+<div class="col-lg-10" style="padding-top:2em;">
+    <section class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="fa fa-bar-chart-o fa-fw"></i> ReportToday
+        </div>
+        <!-- /.panel-heading -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover ">
+                <thead>
+                    <tr>
+                        <th>
+                       Customer Name
+                        </th>
+                        <th>
+                        Created At
+                        </th>
+                        <th>
+                      Customer PhoneNumber
+                        </th>
+                        <th>
+                       Total price
+                        </th>
+                    </tr>
+                </thead>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderTotal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeStamp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer.FistName)
-        </th>
-        <th></th>
-    </tr>
+                <tbody class="panel-body ">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderTotal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeStamp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.FistName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Customer.FistName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeStamp)
+                            </td>
+                            <td>
+                              @Html.DisplayFor(modelItem=>item.CustomerPhoneNumber)  
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderTotal)
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
 
-</table>
+            </table>
+            </div>
+</section>
+</div>
